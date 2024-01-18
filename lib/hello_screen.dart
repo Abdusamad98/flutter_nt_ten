@@ -52,6 +52,7 @@ class HelloScreen extends StatelessWidget {
           ),
           Image.asset(AppImages.boy),
           const SizedBox(height: 40),
+
           const Text(
             "Easy Management for your Store.",
             style: AppTextStyle.interSemiBold,
