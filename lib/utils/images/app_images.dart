@@ -4,6 +4,7 @@ class AppImages {
 
   //.svg
   static const String delete = "assets/icons/delete.svg";
+  static const String location = "assets/icons/location.svg";
 
   //.jpg
 
