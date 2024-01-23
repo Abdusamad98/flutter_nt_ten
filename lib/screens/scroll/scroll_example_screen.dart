@@ -12,36 +12,48 @@ class ScrollExampleScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Scroll Example Screen"),
       ),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        reverse: false,
-        padding: const EdgeInsets.all(24),
-        physics: const BouncingScrollPhysics(),
-        child: Column(
-          children: [
-            Container(
-              margin: const EdgeInsets.all(24),
-              width: width,
-              height: height / 3,
-              color: Colors.green,
+      body: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              reverse: false,
+              padding: const EdgeInsets.all(24),
+              physics: const BouncingScrollPhysics(),
+              child: Column(
+                children: [
+                  Container(
+                    margin: const EdgeInsets.all(24),
+                    width: width,
+                    height: height / 3,
+                    color: Colors.green,
+                  ),
+                  Container(
+                    width: width,
+                    height: height / 3,
+                    color: Colors.yellow,
+                  ),
+                  Container(
+                    width: width,
+                    height: height / 3,
+                    color: Colors.red,
+                  ),
+                  Container(
+                    width: width,
+                    height: height / 3,
+                    color: Colors.deepOrangeAccent,
+                  )
+                ],
+              ),
             ),
-            Container(
-              width: width,
-              height: height / 3,
-              color: Colors.yellow,
-            ),
-            Container(
-              width: width,
-              height: height / 3,
-              color: Colors.red,
-            ),
-            Container(
-              width: width,
-              height: height / 3,
-              color: Colors.deepOrangeAccent,
-            )
-          ],
-        ),
+          ),
+          Container(
+            width: width,
+            height: 60,
+            color: Colors.blue,
+            child: const Text("BUTTON"),
+          )
+        ],
       ),
     );
   }

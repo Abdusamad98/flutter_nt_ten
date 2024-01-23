@@ -7,7 +7,7 @@ void main() {
     MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(useMaterial3: false),
-      home: ScrollExampleScreen(),
+      home: LoginScreen(),
     ),
   );
 }
