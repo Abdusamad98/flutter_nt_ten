@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_nt_ten/screens/homework/news_item.dart';
 import 'package:flutter_nt_ten/utils/colors/app_colors.dart';
-import 'package:flutter_nt_ten/utils/homework/news_item.dart';
 
 class HomeworkExample extends StatelessWidget {
   const HomeworkExample({super.key});
