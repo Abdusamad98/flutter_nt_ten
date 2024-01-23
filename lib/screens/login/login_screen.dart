@@ -165,4 +165,11 @@ class LoginScreen extends StatelessWidget {
       ),
     );
   }
+
+  _getMyTextField(
+    String hintText,
+    String suffixIconPath,
+  ) {
+    return TextField();
+  }
 }
