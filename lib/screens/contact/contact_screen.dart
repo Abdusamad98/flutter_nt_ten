@@ -1,77 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_nt_ten/models/contact_model.dart';
+import 'package:flutter_nt_ten/screens/add_contact/add_contact_screen.dart';
 import 'package:flutter_nt_ten/screens/contact/widgets/contact_item.dart';
 import 'package:flutter_nt_ten/utils/colors/app_colors.dart';
+import 'package:flutter_nt_ten/utils/extensions/project_extensions.dart';
 import 'package:flutter_nt_ten/utils/styles/app_text_style.dart';
 
-class ContactScreen extends StatelessWidget {
+import '../../models/repository.dart';
+
+class ContactScreen extends StatefulWidget {
   const ContactScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    List<ContactModel> contacts = [
-      ContactModel(
-        lastName: "Falonchiyev",
-        firstName: "Pistonchi",
-        phoneNumber: "+99899 123 45 67",
-      ),
-      ContactModel(
-        lastName: "Falonchiyev",
-        firstName: "Pistonchi",
-        phoneNumber: "+99899 123 45 67",
-      ),
-      ContactModel(
-        lastName: "Falonchiyev",
-        firstName: "Pistonchi",
-        phoneNumber: "+99899 123 45 67",
-      ),
-      ContactModel(
-        lastName: "Falonchiyev",
-        firstName: "Pistonchi",
-        phoneNumber: "+99899 123 45 67",
-      ),
-      ContactModel(
-        lastName: "Falonchiyev",
-        firstName: "Pistonchi",
-        phoneNumber: "+99899 123 45 67",
-      ),
-      ContactModel(
-        lastName: "Falonchiyev",
-        firstName: "Pistonchi",
-        phoneNumber: "+99899 123 45 67",
-      ),
-      ContactModel(
-        lastName: "Falonchiyev",
-        firstName: "Pistonchi",
-        phoneNumber: "+99899 123 45 67",
-      ),
-      ContactModel(
-        lastName: "Falonchiyev",
-        firstName: "Pistonchi",
-        phoneNumber: "+99899 123 45 67",
-      ),
-      ContactModel(
-        lastName: "Falonchiyev",
-        firstName: "Pistonchi",
-        phoneNumber: "+99899 123 45 67",
-      ),
-      ContactModel(
-        lastName: "Falonchiyev",
-        firstName: "Pistonchi",
-        phoneNumber: "+99899 123 45 67",
-      ),
-      ContactModel(
-        lastName: "Falonchiyev",
-        firstName: "Pistonchi",
-        phoneNumber: "+99899 123 45 67",
-      ),
-      ContactModel(
-        lastName: "Falonchiyev",
-        firstName: "Pistonchi",
-        phoneNumber: "+99899 123 45 67",
-      )
-    ];
+  State<ContactScreen> createState() => _ContactScreenState();
+}
 
+class _ContactScreenState extends State<ContactScreen> {
+  @override
+  Widget build(BuildContext context) {
+    height = MediaQuery.of(context).size.height;
+    width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.white,
@@ -121,7 +69,16 @@ class ContactScreen extends StatelessWidget {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return AddContactScreen();
+              },
+            ),
+          );
+        },
         child: const Icon(Icons.add),
       ),
     );

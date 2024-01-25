@@ -8,4 +8,13 @@ class ContactModel {
     required this.firstName,
     required this.phoneNumber,
   });
+
+  @override
+  String toString() {
+    return '''
+    Firstname:$firstName,
+    LastName:$lastName,
+    PhoneNumber:$phoneNumber,
+''';
+  }
 }
