@@ -51,6 +51,9 @@ class _ContactScreenState extends State<ContactScreen> {
                             builder: (context) {
                               return ContactInfoScreen(
                                 clickedContactIndex: i,
+                                onChanged: () {
+                                  setState(() {});
+                                },
                               );
                             },
                           ),

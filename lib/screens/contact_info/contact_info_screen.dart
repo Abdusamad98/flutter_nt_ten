@@ -1,6 +1,9 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_nt_ten/models/contact_model.dart';
 import 'package:flutter_nt_ten/models/repository.dart';
+import 'package:flutter_nt_ten/screens/update_contact/update_contact_screen.dart';
 import 'package:flutter_nt_ten/screens/widgets/global_app_bar.dart';
 import 'package:flutter_nt_ten/utils/colors/app_colors.dart';
 import 'package:flutter_nt_ten/utils/extensions/project_extensions.dart';
@@ -8,9 +11,11 @@ import 'package:flutter_nt_ten/utils/styles/app_text_style.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ContactInfoScreen extends StatefulWidget {
-  const ContactInfoScreen({super.key, required this.clickedContactIndex});
+  const ContactInfoScreen(
+      {super.key, required this.clickedContactIndex, required this.onChanged});
 
   final int clickedContactIndex;
+  final Function onChanged;
 
   @override
   State<ContactInfoScreen> createState() => _ContactInfoScreenState();
@@ -49,13 +54,35 @@ class _ContactInfoScreenState extends State<ContactInfoScreen> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      contacts.removeAt(widget.clickedContactIndex);
+                      widget.onChanged.call();
+                      Navigator.pop(context);
+                    },
                     icon: const Icon(
                       Icons.delete,
                       color: Colors.red,
                     ),
                   ),
-                  IconButton(onPressed: () {}, icon: const Icon(Icons.edit)),
+                  IconButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) {
+                          return UpdateContactScreen(
+                              onChanged: () {
+                                widget.onChanged.call();
+                                setState(() {
+                                  contactModel =
+                                      contacts[widget.clickedContactIndex];
+                                });
+                              },
+                              updateContactIndex: widget.clickedContactIndex);
+                        }),
+                      );
+                    },
+                    icon: const Icon(Icons.edit),
+                  ),
                   7.getW(),
                 ],
               )),
