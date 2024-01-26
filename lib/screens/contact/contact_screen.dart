@@ -28,7 +28,9 @@ class _ContactScreenState extends State<ContactScreen> {
     return Scaffold(
       appBar: GlobalAppBar(
         onMoreTap: () {},
-        onSearchTap: () {},
+        onSearchTap: () {
+          print("SEARCH bosildi");
+        },
         backIsVisible: false,
       ),
       body: contacts.isEmpty

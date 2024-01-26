@@ -9,16 +9,14 @@ class UniversalTextField extends StatelessWidget {
     super.key,
     required this.title,
     required this.hintText,
-    required this.onChanged,
-    required this.onSubmit,
     this.keyboardType,
+    required this.controller,
   });
 
   final String title;
   final String hintText;
-  final Function(String v) onChanged;
-  final Function(String v) onSubmit;
   final TextInputType? keyboardType;
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -37,8 +35,7 @@ class UniversalTextField extends StatelessWidget {
               FilteringTextInputFormatter.digitsOnly
           ],
           keyboardType: keyboardType,
-          onChanged: onChanged,
-          onSubmitted: onSubmit,
+          controller: controller,
           maxLength: keyboardType == TextInputType.phone ? 9 : null,
           decoration: InputDecoration(
             prefixIcon: keyboardType == TextInputType.phone

@@ -6,7 +6,7 @@ import 'package:flutter_nt_ten/utils/colors/app_colors.dart';
 import 'package:flutter_nt_ten/utils/extensions/project_extensions.dart';
 import 'package:flutter_nt_ten/utils/styles/app_text_style.dart';
 
-class AddContactScreen extends StatelessWidget {
+class AddContactScreen extends StatefulWidget {
   const AddContactScreen({
     super.key,
     required this.onChanged,
@@ -15,11 +15,16 @@ class AddContactScreen extends StatelessWidget {
   final Function onChanged;
 
   @override
-  Widget build(BuildContext context) {
-    String phoneNumber = "";
-    String firstName = "";
-    String lastName = "";
+  State<AddContactScreen> createState() => _AddContactScreenState();
+}
 
+class _AddContactScreenState extends State<AddContactScreen> {
+  final TextEditingController firstNameController = TextEditingController();
+  final TextEditingController lastNameController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -41,6 +46,10 @@ class AddContactScreen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
+              String phoneNumber = "+998 ${phoneController.text}";
+              String firstName = firstNameController.text;
+              String lastName = lastNameController.text;
+
               ContactModel newContact = ContactModel(
                 lastName: lastName,
                 firstName: firstName,
@@ -49,7 +58,7 @@ class AddContactScreen extends StatelessWidget {
 
               if (newContact.firstName.isEmpty ||
                   newContact.lastName.isEmpty ||
-                  newContact.phoneNumber.isEmpty) {
+                  newContact.phoneNumber.length < 9) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     backgroundColor: Colors.red,
@@ -69,7 +78,7 @@ class AddContactScreen extends StatelessWidget {
                   ),
                 );
                 contacts.add(newContact);
-                onChanged.call();
+                widget.onChanged.call();
                 Navigator.pop(context);
               }
 
@@ -95,34 +104,19 @@ class AddContactScreen extends StatelessWidget {
               UniversalTextField(
                 title: "Name",
                 hintText: "Enter name",
-                onChanged: (value) {
-                  firstName = value;
-                },
-                onSubmit: (v) {
-                  firstName = v;
-                },
+                controller: firstNameController,
               ),
               20.getH(),
               UniversalTextField(
                 title: "Surname",
                 hintText: "Enter surname",
-                onChanged: (value) {
-                  lastName = value;
-                },
-                onSubmit: (v) {
-                  lastName = v;
-                },
+                controller: lastNameController,
               ),
               20.getH(),
               UniversalTextField(
                 title: "Phone number",
                 hintText: "_ _   _ _ _   _ _   _ _",
-                onChanged: (value) {
-                  phoneNumber = "+998$value";
-                },
-                onSubmit: (v) {
-                  phoneNumber = "+998$v";
-                },
+                controller: phoneController,
                 keyboardType: TextInputType.phone,
               ),
             ],
