@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_nt_ten/models/contact_model.dart';
 import 'package:flutter_nt_ten/models/repository.dart';
