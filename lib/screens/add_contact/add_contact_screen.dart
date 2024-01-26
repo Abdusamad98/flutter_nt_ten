@@ -7,7 +7,12 @@ import 'package:flutter_nt_ten/utils/extensions/project_extensions.dart';
 import 'package:flutter_nt_ten/utils/styles/app_text_style.dart';
 
 class AddContactScreen extends StatelessWidget {
-  const AddContactScreen({super.key});
+  const AddContactScreen({
+    super.key,
+    required this.onChanged,
+  });
+
+  final Function onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -64,6 +69,7 @@ class AddContactScreen extends StatelessWidget {
                   ),
                 );
                 contacts.add(newContact);
+                onChanged.call();
                 Navigator.pop(context);
               }
 

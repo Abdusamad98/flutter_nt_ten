@@ -1,0 +1,112 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_nt_ten/models/contact_model.dart';
+import 'package:flutter_nt_ten/models/repository.dart';
+import 'package:flutter_nt_ten/screens/widgets/global_app_bar.dart';
+import 'package:flutter_nt_ten/utils/colors/app_colors.dart';
+import 'package:flutter_nt_ten/utils/extensions/project_extensions.dart';
+import 'package:flutter_nt_ten/utils/styles/app_text_style.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+class ContactInfoScreen extends StatefulWidget {
+  const ContactInfoScreen({super.key, required this.clickedContactIndex});
+
+  final int clickedContactIndex;
+
+  @override
+  State<ContactInfoScreen> createState() => _ContactInfoScreenState();
+}
+
+class _ContactInfoScreenState extends State<ContactInfoScreen> {
+  late ContactModel contactModel;
+
+  @override
+  void initState() {
+    contactModel = contacts[widget.clickedContactIndex];
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: GlobalAppBar(
+        backIsVisible: true,
+        onMoreTap: () {},
+        onSearchTap: () {},
+      ),
+      body: Column(
+        children: [
+          52.getH(),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              const Expanded(child: SizedBox()),
+              const Icon(
+                Icons.account_circle,
+                size: 100,
+              ),
+              Expanded(
+                  child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.delete,
+                      color: Colors.red,
+                    ),
+                  ),
+                  IconButton(onPressed: () {}, icon: const Icon(Icons.edit)),
+                  7.getW(),
+                ],
+              )),
+            ],
+          ),
+          20.getH(),
+          Text(
+            "${contactModel.firstName} ${contactModel.lastName}",
+            style: AppTextStyle.interSemiBold.copyWith(
+              fontSize: 22,
+            ),
+          ),
+          25.getH(),
+          Row(
+            children: [
+              15.getW(),
+              Text(
+                contactModel.phoneNumber,
+                style: AppTextStyle.interSemiBold.copyWith(
+                  fontSize: 18,
+                ),
+              ),
+              const Spacer(),
+              FloatingActionButton(
+                onPressed: () {
+                  Uri uri = Uri.parse("tel:${contactModel.phoneNumber}");
+                  launchUrl(uri);
+                },
+                backgroundColor: AppColors.c_08AE2D,
+                child: const Icon(
+                  Icons.phone,
+                  color: Colors.white,
+                ),
+              ),
+              15.getW(),
+              FloatingActionButton(
+                onPressed: () {
+                  Uri uri = Uri.parse("sms:Hello World");
+                  launchUrl(uri);
+                },
+                backgroundColor: Colors.orange,
+                child: const Icon(
+                  Icons.message,
+                  color: Colors.white,
+                ),
+              ),
+              15.getW(),
+            ],
+          )
+        ],
+      ),
+    );
+  }
+}

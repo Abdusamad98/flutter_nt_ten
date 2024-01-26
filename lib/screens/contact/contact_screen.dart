@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_nt_ten/models/contact_model.dart';
 import 'package:flutter_nt_ten/screens/add_contact/add_contact_screen.dart';
 import 'package:flutter_nt_ten/screens/contact/widgets/contact_item.dart';
+import 'package:flutter_nt_ten/screens/contact_info/contact_info_screen.dart';
+import 'package:flutter_nt_ten/screens/widgets/global_app_bar.dart';
 import 'package:flutter_nt_ten/utils/colors/app_colors.dart';
 import 'package:flutter_nt_ten/utils/extensions/project_extensions.dart';
+import 'package:flutter_nt_ten/utils/images/app_images.dart';
 import 'package:flutter_nt_ten/utils/styles/app_text_style.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../models/repository.dart';
 
@@ -21,52 +26,39 @@ class _ContactScreenState extends State<ContactScreen> {
     height = MediaQuery.of(context).size.height;
     width = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.white,
-        title: Text(
-          "Contacts",
-          style: AppTextStyle.interSemiBold.copyWith(
-            fontSize: 20,
-            color: AppColors.black,
-          ),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.search,
-              color: AppColors.black,
-            ),
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.more_vert,
-              color: AppColors.black,
-            ),
-          ),
-        ],
+      appBar: GlobalAppBar(
+        onMoreTap: () {},
+        onSearchTap: () {},
+        backIsVisible: false,
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            // ...List.generate(
-            //   contacts.length,
-            //   (index) => ContactItem(
-            //     onCallTap: () {},
-            //     onContactTap: () {},
-            //     contactModel: contacts[index],
-            //   ),
-            // ),
-            for (int i = 0; i < contacts.length; i++)
-              ContactItem(
-                onCallTap: () {},
-                onContactTap: () {},
-                contactModel: contacts[i],
+      body: contacts.isEmpty
+          ? Center(child: SvgPicture.asset(AppImages.emptyBox))
+          : SingleChildScrollView(
+              child: Column(
+                children: [
+                  for (int i = 0; i < contacts.length; i++)
+                    ContactItem(
+                      onCallTap: () {
+                        Uri uri = Uri.parse("tel:${contacts[i].phoneNumber}");
+                        launchUrl(uri);
+                      },
+                      onContactTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return ContactInfoScreen(
+                                clickedContactIndex: i,
+                              );
+                            },
+                          ),
+                        );
+                      },
+                      contactModel: contacts[i],
+                    ),
+                ],
               ),
-          ],
-        ),
-      ),
+            ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -74,7 +66,11 @@ class _ContactScreenState extends State<ContactScreen> {
             context,
             MaterialPageRoute(
               builder: (context) {
-                return AddContactScreen();
+                return AddContactScreen(
+                  onChanged: () {
+                    setState(() {});
+                  },
+                );
               },
             ),
           );
@@ -84,3 +80,12 @@ class _ContactScreenState extends State<ContactScreen> {
     );
   }
 }
+
+// ...List.generate(
+//   contacts.length,
+//   (index) => ContactItem(
+//     onCallTap: () {},
+//     onContactTap: () {},
+//     contactModel: contacts[index],
+//   ),
+// ),

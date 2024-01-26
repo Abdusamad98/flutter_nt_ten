@@ -18,7 +18,7 @@ class ContactItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      onTap: () {},
+      onTap: onContactTap,
       leading: const Icon(
         Icons.account_circle,
         size: 50,
@@ -35,7 +35,7 @@ class ContactItem extends StatelessWidget {
         ),
       ),
       trailing: IconButton(
-        onPressed: () {},
+        onPressed: onCallTap,
         icon: const Icon(
           Icons.call,
           color: AppColors.c_08AE2D,
