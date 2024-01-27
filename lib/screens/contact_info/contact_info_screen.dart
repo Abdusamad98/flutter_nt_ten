@@ -53,9 +53,54 @@ class _ContactInfoScreenState extends State<ContactInfoScreen> {
                 children: [
                   IconButton(
                     onPressed: () {
-                      contacts.removeAt(widget.clickedContactIndex);
-                      widget.onChanged.call();
-                      Navigator.pop(context);
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            backgroundColor: Colors.red,
+                            elevation: 2.0,
+                            iconColor: Colors.green,
+                            icon: IconButton(
+                              onPressed: () {},
+                              icon: Icon(Icons.account_circle),
+                            ),
+                            title: const Text("Ogohlantirish!"),
+                            content: const Text(
+                                "Siz haqiqatdan ham ushbu kontaktingizni o'chirmoqchimisiz?"),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  contacts.removeAt(widget.clickedContactIndex);
+                                  widget.onChanged.call();
+                                  Navigator.pop(context);
+                                  Navigator.pop(context);
+                                },
+                                child: Text('OK'),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Text('NO'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+
+                      // showDialog(
+                      //     context: context,
+                      //     builder: (context) {
+                      //       return Material(
+                      //         color: Colors.transparent,
+                      //         child: Container(
+                      //             margin: EdgeInsets.all(100),
+                      //             width: 300,
+                      //             height: 400,
+                      //             color: Colors.white,
+                      //             child: Text("dhjfgbn")),
+                      //       );
+                      //     });
                     },
                     icon: const Icon(
                       Icons.delete,
