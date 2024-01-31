@@ -14,7 +14,8 @@ class StatefulLifecycleExample extends StatefulWidget {
   }
 }
 
-class _StatefulLifecycleExampleState extends State<StatefulLifecycleExample> {
+class _StatefulLifecycleExampleState extends State<StatefulLifecycleExample>
+    with WidgetsBindingObserver {
   late String name;
 
   late TextEditingController controller;
@@ -25,6 +26,7 @@ class _StatefulLifecycleExampleState extends State<StatefulLifecycleExample> {
     name = "Abdulloh";
     print("INIT_STATE_METHOD");
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
   }
 
   @override
@@ -84,5 +86,12 @@ class _StatefulLifecycleExampleState extends State<StatefulLifecycleExample> {
         ],
       ),
     );
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    print("CURRENT_APP_STATE:${state.name}");
+    DateTime dateTime = DateTime.now();
+    super.didChangeAppLifecycleState(state);
   }
 }
