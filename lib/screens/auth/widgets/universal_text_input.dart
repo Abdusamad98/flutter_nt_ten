@@ -12,13 +12,17 @@ class UniversalTextField extends StatelessWidget {
     required this.hintText,
     required this.type,
     required this.regExp,
+    required this.errorText,
+    this.labelText,
   });
 
   final TextEditingController controller;
   final String iconPath;
   final String hintText;
+  final String errorText;
   final TextInputType type;
   final RegExp regExp;
+  final String? labelText;
 
   @override
   Widget build(BuildContext context) {
@@ -34,13 +38,14 @@ class UniversalTextField extends StatelessWidget {
             value.isEmpty ||
             !regExp.hasMatch(value) ||
             value.length < 3) {
-          return "Tog'ri ma'lumot kiriting!";
+          return errorText;
         } else {
           return null;
         }
       },
       autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
+        labelText: labelText,
         contentPadding: EdgeInsets.symmetric(
           vertical: 16.getH(),
           horizontal: 1.getW(),
@@ -58,16 +63,18 @@ class UniversalTextField extends StatelessWidget {
             color: AppColors.c_090F47.withOpacity(0.3),
           ),
         ),
-        prefixIcon: Padding(
-          padding: const EdgeInsets.fromLTRB(0, 8, 8, 8),
-          child: SvgPicture.asset(
-            iconPath,
-            // colorFilter: const ColorFilter.mode(
-            //   AppColors.c_C4C4C4,
-            //   BlendMode.srcIn,
-            // ),
-          ),
-        ),
+        prefixIcon: iconPath.isNotEmpty
+            ? Padding(
+                padding: const EdgeInsets.fromLTRB(0, 8, 8, 8),
+                child: SvgPicture.asset(
+                  iconPath,
+                  // colorFilter: const ColorFilter.mode(
+                  //   AppColors.c_C4C4C4,
+                  //   BlendMode.srcIn,
+                  // ),
+                ),
+              )
+            : null,
         hintText: hintText,
         hintStyle: AppTextStyle.interSemiBold.copyWith(
           fontSize: 15,

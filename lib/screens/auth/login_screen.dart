@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_nt_ten/screens/auth/register_screen.dart';
 import 'package:flutter_nt_ten/screens/auth/widgets/password_text_input.dart';
 import 'package:flutter_nt_ten/screens/auth/widgets/universal_text_input.dart';
 import 'package:flutter_nt_ten/screens/widgets/empty_global_appbar.dart';
@@ -54,6 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       SizedBox(height: 24.getH()),
                       UniversalTextField(
+                        errorText: "Ismni to'g'ri  kiriting!",
                         regExp: RegExp("[a-zA-Z]"),
                         controller: usernameController,
                         iconPath: AppImages.person,
@@ -88,7 +90,16 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return RegisterScreen();
+                      },
+                    ),
+                  );
+                },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

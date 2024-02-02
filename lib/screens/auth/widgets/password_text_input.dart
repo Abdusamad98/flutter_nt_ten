@@ -45,7 +45,7 @@ class PasswordTextField extends StatelessWidget {
       decoration: InputDecoration(
         errorStyle: AppTextStyle.interRegular.copyWith(color: Colors.red),
         contentPadding: EdgeInsets.symmetric(
-          vertical: 16.getH(),
+          vertical: iconPath.isNotEmpty ? 16.getH() : 8.getH(),
           horizontal: 1.getW(),
         ),
         enabledBorder: UnderlineInputBorder(
@@ -58,10 +58,12 @@ class PasswordTextField extends StatelessWidget {
             color: AppColors.c_090F47.withOpacity(0.3),
           ),
         ),
-        prefixIcon: Padding(
-          padding: const EdgeInsets.fromLTRB(0, 8, 8, 8),
-          child: SvgPicture.asset(iconPath),
-        ),
+        prefixIcon: iconPath.isNotEmpty
+            ? Padding(
+                padding: const EdgeInsets.fromLTRB(0, 8, 8, 8),
+                child: SvgPicture.asset(iconPath),
+              )
+            : null,
         suffix: suffix,
         hintText: "Password",
         hintStyle: AppTextStyle.interSemiBold.copyWith(
