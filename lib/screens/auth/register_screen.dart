@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_nt_ten/screens/auth/login_screen.dart';
 import 'package:flutter_nt_ten/screens/auth/widgets/password_text_input.dart';
 import 'package:flutter_nt_ten/screens/auth/widgets/universal_text_input.dart';
 import 'package:flutter_nt_ten/screens/widgets/empty_global_appbar.dart';
 import 'package:flutter_nt_ten/screens/widgets/simple_global_button.dart';
 import 'package:flutter_nt_ten/utils/colors/app_colors.dart';
+import 'package:flutter_nt_ten/utils/constants/app_constants.dart';
 import 'package:flutter_nt_ten/utils/size/size_utils.dart';
 import 'package:flutter_nt_ten/utils/styles/app_text_style.dart';
 
@@ -59,7 +61,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       UniversalTextField(
                         labelText: "Your name",
                         errorText: "Ismni to'g'ri  kiriting!",
-                        regExp: RegExp("[a-zA-Z]"),
+                        regExp: AppConstants.textRegExp,
                         controller: usernameController,
                         iconPath: "",
                         hintText: "Your Name",
@@ -69,7 +71,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       UniversalTextField(
                         labelText: "Mobile number",
                         errorText: "Telefon raqamni to'g'ri  kiriting!",
-                        regExp: RegExp(r'(^(?:[+0]9)?[0-9]{10,12}$)'),
+                        regExp: AppConstants.phoneRegExp,
                         controller: phoneController,
                         iconPath: "",
                         hintText: "Mobile Number",
@@ -78,8 +80,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       SizedBox(height: 8.getH()),
                       UniversalTextField(
                         errorText: "Emailni to'g'ri  kiriting!",
-                        regExp: RegExp(
-                            r'^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$'),
+                        regExp: AppConstants.emailRegExp,
                         controller: emailController,
                         iconPath: "",
                         hintText: "Email",
@@ -105,10 +106,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       SimpleGlobalButton(
                         onTap: () {
                           bool validated = formKey.currentState!.validate();
-                          print(validated);
                           if (validated) {
                             ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(content: Text("SUCCESS!")));
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                backgroundColor: Colors.red,
+                                content: Text(
+                                  "ERROR!",
+                                  style: AppTextStyle.interSemiBold
+                                      .copyWith(color: AppColors.white),
+                                ),
+                              ),
+                            );
                           }
                         },
                         title: "REGISTER",
@@ -119,7 +130,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return LoginScreen();
+                      },
+                    ),
+                  );
+                },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -130,7 +150,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     SizedBox(width: 8.getW()),
                     Text(
-                      "Don’t have an account? Sign Up",
+                      "Already have an account? Login",
                       style: AppTextStyle.interRegular.copyWith(
                         fontSize: 14,
                         color: AppColors.c_090F47.withOpacity(0.45),

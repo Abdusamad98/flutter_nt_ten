@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_nt_ten/utils/colors/app_colors.dart';
+import 'package:flutter_nt_ten/utils/constants/app_constants.dart';
 import 'package:flutter_nt_ten/utils/size/size_utils.dart';
 import 'package:flutter_nt_ten/utils/styles/app_text_style.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -20,7 +21,6 @@ class PasswordTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var passwordRegex = RegExp(r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$');
 
     // kamida 8 ta simvol
     // Kamida bitta Katta harf
@@ -35,7 +35,8 @@ class PasswordTextField extends StatelessWidget {
         color: AppColors.c_090F47,
       ),
       validator: (String? value) {
-        if (value == null || value.isEmpty || !passwordRegex.hasMatch(value)) {
+        if (value == null || value.isEmpty || !AppConstants.passwordRegExp
+            .hasMatch(value)) {
           return "To'gri parol kiriting!";
         } else {
           return null;
