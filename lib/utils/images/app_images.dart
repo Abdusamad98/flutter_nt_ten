@@ -10,6 +10,8 @@ class AppImages {
   //.svg
   static const String delete = "assets/icons/delete.svg";
   static const String logo = "assets/icons/logo.svg";
+  static const String facebook = "assets/icons/facebook.svg";
+  static const String google = "assets/icons/google.svg";
 
 //.jpg
 
