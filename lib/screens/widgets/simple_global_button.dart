@@ -26,7 +26,7 @@ class SimpleGlobalButton extends StatelessWidget {
             backgroundColor: AppColors.c_4157FF,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(100))),
-        onPressed: () {},
+        onPressed: onTap,
         child: Text(
           title,
           style: AppTextStyle.interBold.copyWith(

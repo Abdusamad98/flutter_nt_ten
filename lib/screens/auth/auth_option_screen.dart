@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_nt_ten/screens/auth/login_screen.dart';
 import 'package:flutter_nt_ten/screens/auth/widgets/auth_button.dart';
 import 'package:flutter_nt_ten/screens/widgets/simple_global_button.dart';
 import 'package:flutter_nt_ten/utils/colors/app_colors.dart';
@@ -66,7 +67,14 @@ class _AuthOptionScreenState extends State<AuthOptionScreen> {
           SizedBox(height: 4.getH()),
           TextButton(
             onPressed: () {
-
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return LoginScreen();
+                  },
+                ),
+              );
             },
             child: Text(
               "LOGIN",
