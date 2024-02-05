@@ -23,7 +23,6 @@ class _DynamicSelectionScreenState extends State<DynamicSelectionScreen> {
     "Variant 10",
   ];
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
