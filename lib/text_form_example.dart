@@ -70,6 +70,7 @@ class _TextFormExampleState extends State<TextFormExample> {
               ),
               SizedBox(height: 30),
               TextFormField(
+                onTap: () {},
                 obscureText: true,
                 keyboardType: TextInputType.text,
                 validator: (String? value) {
@@ -82,7 +83,7 @@ class _TextFormExampleState extends State<TextFormExample> {
                 controller: passwordController,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 decoration: InputDecoration(
-                 // hintText: "Password",
+                  // hintText: "Password",
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                     borderSide: const BorderSide(
@@ -90,6 +91,7 @@ class _TextFormExampleState extends State<TextFormExample> {
                       width: 2,
                     ),
                   ),
+
                   labelText: "Password",
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
