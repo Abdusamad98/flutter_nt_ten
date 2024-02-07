@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_nt_ten/models/repository.dart';
 import 'package:flutter_nt_ten/utils/colors/app_colors.dart';
@@ -202,7 +200,8 @@ class _AllNewsScreenState extends State<AllNewsScreen> {
                       ? Colors.grey
                       : AppColors.black,
             ),
-          )
+          ),
+          const SizedBox(height: 8)
         ],
       ),
     );

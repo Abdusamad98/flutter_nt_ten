@@ -57,9 +57,7 @@ class MyAppBar extends StatelessWidget implements PreferredSize {
             width: 20,
           ),
         ),
-        SizedBox(
-          width: 5,
-        )
+        SizedBox(width: 5)
       ],
     );
   }
