@@ -4,11 +4,12 @@ class ProductModel {
   final String image;
   final ProductCategory category;
 
-  ProductModel(
-      {required this.category,
-      required this.productName,
-      required this.image,
-      required this.productDescription});
+  ProductModel({
+    required this.category,
+    required this.productName,
+    required this.image,
+    required this.productDescription,
+  });
 }
 
 enum ProductCategory {
