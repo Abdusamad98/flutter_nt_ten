@@ -18,6 +18,16 @@ class _TaskScreenState extends State<TaskScreen> {
     ProductCategory.jackets,
   ];
 
+  List<ProductModel> temp = [];
+
+  int categoryIndex = 0;
+
+  @override
+  void initState() {
+    temp = products;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,9 +43,27 @@ class _TaskScreenState extends State<TaskScreen> {
                       padding: EdgeInsets.symmetric(horizontal: 10),
                       child: TextButton(
                         style: TextButton.styleFrom(
-                          backgroundColor: Colors.blue,
+                          backgroundColor: categoryIndex == index
+                              ? Colors.black
+                              : Colors.blue,
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          temp = [];
+                          if (index == 0) {
+                            categoryIndex = 0;
+                            temp = products;
+                          } else {
+                            temp = products
+                                .where((element) =>
+                                    element.category == categories[index])
+                                .toList();
+                          }
+
+                          print("PRODUCT LENGTH:${temp.length}");
+
+                          categoryIndex = index;
+                          setState(() {});
+                        },
                         child: Text(
                           categories[index].name,
                           style: AppTextStyle.interMedium
@@ -52,9 +80,9 @@ class _TaskScreenState extends State<TaskScreen> {
                 crossAxisCount: 2,
                 children: [
                   ...List.generate(
-                    products.length,
+                    temp.length,
                     (index) => Container(
-                      child: Image.asset(products[index].image),
+                      child: Image.asset(temp[index].image),
                     ),
                   )
                 ],
