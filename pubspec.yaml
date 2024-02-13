@@ -72,14 +72,6 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-     - family: Bodoni
-       fonts:
-         - asset: assets/fonts/bodoni/BodoniFLF-Bold.ttf
-         - asset: assets/fonts/bodoni/BodoniFLF-BoldItalic.ttf
-         - asset: assets/fonts/bodoni/BodoniFLF-Italic.ttf
-           style: italic
-         - asset: assets/fonts/bodoni/BodoniFLF-Roman.ttf
-
      - family: Inter
        fonts:
          - asset: assets/fonts/inter/Inter-Black.otf
