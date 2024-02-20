@@ -30,24 +30,19 @@ class _FetchDataScreenState extends State<FetchDataScreen> {
       }
     } catch (error) {
       isLoading = false;
-      if(context.mounted) {
+      if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            error.toString(),
+          SnackBar(
+            content: Text(
+              error.toString(),
+            ),
           ),
-        ),
-      );
+        );
       }
 
       setState(() {});
     }
   }
-
-
-
-
-
 
   @override
   void initState() {
