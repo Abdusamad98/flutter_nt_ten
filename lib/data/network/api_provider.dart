@@ -3,14 +3,15 @@ import 'dart:convert';
 import 'package:flutter_nt_ten/data/models/country/country_model.dart';
 import 'package:flutter_nt_ten/data/models/network_response.dart';
 import 'package:flutter_nt_ten/data/models/user/user_model.dart';
+import 'package:flutter_nt_ten/utils/constants/app_constants.dart';
 import 'package:http/http.dart' as http;
 
 class ApiProvider {
   static Future<NetworkResponse> fetchSingleUserData(int id) async {
     NetworkResponse networkResponse = NetworkResponse();
     try {
-      http.Response response = await http
-          .get(Uri.parse("https://jsonplaceholder.typicode.com/albums/$id"));
+      http.Response response =
+          await http.get(Uri.parse("${AppConstants.baseURL}/albums/$id"));
 
       if (response.statusCode == 200) {
         networkResponse.data = UserModel.fromJson(jsonDecode(response.body));
@@ -27,8 +28,8 @@ class ApiProvider {
   static Future<NetworkResponse> fetchUsers() async {
     NetworkResponse networkResponse = NetworkResponse();
     try {
-      http.Response response = await http
-          .get(Uri.parse("https://jsonplaceholder.typicode.com/albums"));
+      http.Response response =
+          await http.get(Uri.parse("${AppConstants.baseURL}/albums"));
 
       if (response.statusCode == 200) {
         networkResponse.data = (jsonDecode(response.body) as List?)
@@ -48,7 +49,7 @@ class ApiProvider {
   static Future<NetworkResponse> fetchCountries() async {
     try {
       http.Response response = await http
-          .get(Uri.parse("https://easyenglishuzb.free.mockoapp.net/countries"));
+          .get(Uri.parse("${AppConstants.baseURL2}/countries"));
       if (response.statusCode == 200) {
         List<CountryModel> countries =
             (jsonDecode(response.body)["data"]["countries"] as List?)
