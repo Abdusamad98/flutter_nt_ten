@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 
 class ApiProvider {
   static Future<MyResponse> getSimpleWeatherInfo(String city) async {
-    Map<String, String> _queryParams = {
+    Map<String, String> queryParams = {
       "appid": AppConstants.apiKey,
       "q": city,
     };
@@ -16,7 +16,7 @@ class ApiProvider {
     Uri uri = Uri.https(
       AppConstants.baseUrl,
       "/data/2.5/weather",
-      _queryParams,
+      queryParams,
     );
 
     try {
@@ -34,7 +34,7 @@ class ApiProvider {
   }
 
   static Future<MyResponse> getComplexWeatherInfo() async {
-    Map<String, String> _queryParams = {
+    Map<String, String> queryParams = {
       "lat": "41.2646",
       "lon": "69.2163",
       "units": "metric",
@@ -45,7 +45,7 @@ class ApiProvider {
     Uri uri = Uri.https(
       AppConstants.baseUrl,
       "/data/2.5/onecall",
-      _queryParams,
+      queryParams,
     );
 
     try {
