@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_nt_ten/hello_screen.dart';
+import 'package:flutter_nt_ten/screens/routes.dart';
 
 void main() {
-  runApp(
-    MaterialApp(
+  runApp(App());
+}
+
+class App extends StatelessWidget {
+  const App({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      initialRoute: RouteNames.splash,
+      onGenerateRoute: AppRoutes.generateRoute,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(useMaterial3: false),
-      home: HelloScreen(),
-    ),
-  );
+    );
+  }
 }
