@@ -5,13 +5,11 @@ class StorageRepository {
   static final StorageRepository instance = StorageRepository._();
   static SharedPreferences? _preference;
 
-  StorageRepository._() {
-    _init();
-  }
+  StorageRepository._();
 
   factory StorageRepository() => instance;
 
-  Future<void> _init() async {
+  static Future<void> init() async {
     _preference = await SharedPreferences.getInstance();
   }
 

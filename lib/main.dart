@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_nt_ten/data/local/storage_repository.dart';
 import 'package:flutter_nt_ten/screens/routes.dart';
+import 'package:flutter_nt_ten/utils/colors/app_colors.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await StorageRepository.init();
   runApp(App());
 }
 
@@ -14,7 +18,10 @@ class App extends StatelessWidget {
       initialRoute: RouteNames.splash,
       onGenerateRoute: AppRoutes.generateRoute,
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(useMaterial3: false),
+      theme: ThemeData(
+        useMaterial3: false,
+        scaffoldBackgroundColor: AppColors.c121212,
+      ),
     );
   }
 }
