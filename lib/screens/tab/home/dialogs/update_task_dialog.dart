@@ -6,14 +6,17 @@ import 'package:flutter_nt_ten/utils/styles/app_text_style.dart';
 import 'package:flutter_nt_ten/utils/utilities.dart';
 import 'package:intl/intl.dart';
 
-addTaskDialog({
+updateTaskDialog({
   required BuildContext context,
+  required TaskModel task,
   required ValueChanged<TaskModel> taskModelChanged,
 }) {
-  final TextEditingController titleController = TextEditingController();
-  final TextEditingController descriptionController = TextEditingController();
+  TaskModel taskModel = task;
 
-  TaskModel taskModel = TaskModel.initialValue;
+  final TextEditingController titleController =
+      TextEditingController(text: taskModel.title);
+  final TextEditingController descriptionController =
+      TextEditingController(text: taskModel.description);
 
   DateTime? dateTime;
   TimeOfDay? timeOfDay;
@@ -152,7 +155,6 @@ addTaskDialog({
                             });
                             taskModel = taskModel.copyWith(priority: p);
                             if (taskModel.canAddTaskToDatabase()) {
-                              print("SUCCESS");
                               showSuccessMessage("SUCCESS");
                               taskModelChanged.call(taskModel);
                               Navigator.pop(context);

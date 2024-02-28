@@ -1,3 +1,4 @@
+import 'package:flutter_nt_ten/data/models/task_model_constants.dart';
 import 'package:flutter_nt_ten/data/models/task_status.dart';
 
 class TaskModel {
@@ -40,24 +41,25 @@ class TaskModel {
 
   factory TaskModel.fromJson(Map<String, dynamic> json) {
     return TaskModel(
-      description: json["description"] as String? ?? "",
-      title: json["title"] as String? ?? "",
-      status: getStatus(json["status"] as String? ?? ""),
-      category: json["category"] as String? ?? "",
-      deadline: DateTime.parse(json["deadline"] as String? ?? ""),
-      priority: json["priority"] as int? ?? 1,
-      id: json["_id"] as int? ?? 0,
+      description: json[TaskModelConstants.description] as String? ?? "",
+      title: json[TaskModelConstants.title] as String? ?? "",
+      status: getStatus(json[TaskModelConstants.status] as String? ?? ""),
+      category: json[TaskModelConstants.category] as String? ?? "",
+      deadline:
+          DateTime.parse(json[TaskModelConstants.deadline] as String? ?? ""),
+      priority: json[TaskModelConstants.priority] as int? ?? 1,
+      id: json[TaskModelConstants.id] as int? ?? 0,
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      "description": description,
-      "title": title,
-      "status": status.name,
-      "category": category,
-      "deadline": deadline.toString(),
-      "priority": priority,
+      TaskModelConstants.description: description,
+      TaskModelConstants.title: title,
+      TaskModelConstants.status: status.name,
+      TaskModelConstants.category: category,
+      TaskModelConstants.deadline: deadline.toString(),
+      TaskModelConstants.priority: priority,
     };
   }
 
