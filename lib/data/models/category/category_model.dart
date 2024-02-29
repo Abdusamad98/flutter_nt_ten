@@ -1,10 +1,11 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_nt_ten/data/models/category/category_model_constants.dart';
 
 class CategoryModel {
   final int? id;
   final String name;
   final String iconPath;
-  final String color;
+  final Color color;
 
   CategoryModel({
     this.id,
@@ -17,7 +18,7 @@ class CategoryModel {
     int? id,
     String? name,
     String? iconPath,
-    String? color,
+    Color? color,
   }) {
     return CategoryModel(
       name: name ?? this.name,
@@ -30,7 +31,8 @@ class CategoryModel {
     return CategoryModel(
       iconPath: json[CategoryModelConstants.iconPath] as String? ?? "",
       name: json[CategoryModelConstants.name] as String? ?? "",
-      color: json[CategoryModelConstants.color] as String? ?? "",
+      color:
+          Color(int.parse(json[CategoryModelConstants.color] as String? ?? "")),
       id: json[CategoryModelConstants.id] as int? ?? 0,
     );
   }
@@ -39,20 +41,19 @@ class CategoryModel {
     return {
       CategoryModelConstants.name: name,
       CategoryModelConstants.iconPath: iconPath,
-      CategoryModelConstants.color: color,
+      CategoryModelConstants.color: color.value.toString(),
     };
   }
 
   bool canAddTaskToDatabase() {
     if (name.isEmpty) return false;
     if (iconPath.isEmpty) return false;
-    if (color.isEmpty) return false;
     return true;
   }
 
   static CategoryModel initialValue = CategoryModel(
     iconPath: "",
     name: "",
-    color: "",
+    color: Colors.green,
   );
 }

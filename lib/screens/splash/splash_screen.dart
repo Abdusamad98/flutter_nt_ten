@@ -17,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
     StorageRepository();
     bool isEnteredBefore =
         StorageRepository.getBool(key: StorageKeys.onBoardingState);
-    print("ON BOARDING STATE:$isEnteredBefore");
+    debugPrint("ON BOARDING STATE:$isEnteredBefore");
     Future.delayed(
       const Duration(seconds: 1),
       () {
