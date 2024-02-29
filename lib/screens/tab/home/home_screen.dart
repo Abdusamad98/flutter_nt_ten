@@ -47,9 +47,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint("COLOR VALUE:${Colors.black.value}");
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
+        backgroundColor: const Color(4278190080),//0xFF000000
         title: const Text("TODOS"),
       ),
       body: RefreshIndicator(
