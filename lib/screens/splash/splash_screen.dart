@@ -22,9 +22,9 @@ class _SplashScreenState extends State<SplashScreen> {
       const Duration(seconds: 1),
       () {
         if (isEnteredBefore) {
-          Navigator.pushNamed(context, RouteNames.tabBox);
+          Navigator.pushReplacementNamed(context, RouteNames.tabBox);
         } else {
-          Navigator.pushNamed(context, RouteNames.onBoarding);
+          Navigator.pushReplacementNamed(context, RouteNames.onBoarding);
         }
       },
     );
@@ -33,8 +33,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    width  = MediaQuery.of(context).size.width;
-    height  = MediaQuery.of(context).size.height;
+    width = MediaQuery.of(context).size.width;
+    height = MediaQuery.of(context).size.height;
     return Scaffold();
   }
 }
