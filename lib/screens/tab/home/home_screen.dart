@@ -17,8 +17,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  TaskModel taskModel = TaskModel.initialValue;
-
   List<TaskModel> tasks = [];
 
   _init() async {
@@ -51,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: const Color(4278190080),//0xFF000000
+        backgroundColor: const Color(4278190080), //0xFF000000
         title: const Text("TODOS"),
       ),
       body: RefreshIndicator(
@@ -87,7 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       taskModel: taskModel,
                       onDelete: () async {
                         int d = await LocalDatabase.deleteTask(taskModel.id!);
-                        print("DELETED ID:$d");
+                        debugPrint("DELETED ID:$d");
                         _init();
                       },
                       onUpdate: () {
