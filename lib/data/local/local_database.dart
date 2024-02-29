@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_nt_ten/data/models/task_model.dart';
-import 'package:flutter_nt_ten/data/models/task_model_constants.dart';
+import 'package:flutter_nt_ten/data/models/task/task_model.dart';
+import 'package:flutter_nt_ten/data/models/task/task_model_constants.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 

@@ -1,6 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_nt_ten/data/local/local_database.dart';
-import 'package:flutter_nt_ten/data/models/task_model.dart';
 import 'package:flutter_nt_ten/screens/tab/calendar/calendar_screen.dart';
 import 'package:flutter_nt_ten/screens/tab/home/dialogs/add_task_dialog.dart';
 import 'package:flutter_nt_ten/screens/tab/home/home_screen.dart';
@@ -14,6 +15,7 @@ class TabBox extends StatefulWidget {
 }
 
 class _TabBoxState extends State<TabBox> {
+  StreamController<bool> streamController = StreamController<bool>();
 
   List<Widget> screens = [
     HomeScreen(),
@@ -23,17 +25,19 @@ class _TabBoxState extends State<TabBox> {
 
   int activeIndex = 0;
 
-  List<TaskModel> tasks = [];
-
   _init() async {
-    tasks = await LocalDatabase.getAllTasks();
-    print("UPDATING UI");
     screens = [
-      HomeScreen(),
+      HomeScreen(stream: streamController.stream.asBroadcastStream()),
       CalendarScreen(),
       ProfileScreen(),
     ];
     setState(() {});
+  }
+
+  @override
+  void initState() {
+    _init();
+    super.initState();
   }
 
   @override
@@ -68,7 +72,7 @@ class _TabBoxState extends State<TabBox> {
             context: context,
             taskModelChanged: (task) async {
               await LocalDatabase.insertTask(task);
-              _init();
+              streamController.add(true);
             },
           );
         },

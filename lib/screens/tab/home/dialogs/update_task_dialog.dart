@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_nt_ten/data/models/task_model.dart';
+import 'package:flutter_nt_ten/data/models/task/task_model.dart';
 import 'package:flutter_nt_ten/screens/tab/home/dialogs/category_select_dialog.dart';
 import 'package:flutter_nt_ten/screens/tab/home/dialogs/priority_select_dialog.dart';
 import 'package:flutter_nt_ten/utils/styles/app_text_style.dart';

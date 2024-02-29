@@ -1,5 +1,5 @@
-import 'package:flutter_nt_ten/data/models/task_model_constants.dart';
-import 'package:flutter_nt_ten/data/models/task_status.dart';
+import 'package:flutter_nt_ten/data/models/task/task_model_constants.dart';
+import 'package:flutter_nt_ten/data/models/task/task_status.dart';
 
 class TaskModel {
   final int? id;

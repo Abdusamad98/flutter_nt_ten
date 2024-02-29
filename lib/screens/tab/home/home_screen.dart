@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_nt_ten/data/local/local_database.dart';
-import 'package:flutter_nt_ten/data/models/task_model.dart';
+import 'package:flutter_nt_ten/data/models/task/task_model.dart';
 import 'package:flutter_nt_ten/screens/tab/home/dialogs/update_task_dialog.dart';
 import 'package:flutter_nt_ten/screens/tab/home/widgets/task_item_view.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({
+    super.key,
+    this.stream,
+  });
+
+  final Stream? stream;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -32,6 +37,11 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     _init();
+    if (widget.stream != null) {
+      widget.stream!.listen((event) {
+        _init();
+      });
+    }
     super.initState();
   }
 

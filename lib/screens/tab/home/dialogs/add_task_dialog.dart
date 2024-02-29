@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_nt_ten/data/models/task_model.dart';
+import 'package:flutter_nt_ten/data/models/task/task_model.dart';
 import 'package:flutter_nt_ten/screens/tab/home/dialogs/category_select_dialog.dart';
 import 'package:flutter_nt_ten/screens/tab/home/dialogs/priority_select_dialog.dart';
 import 'package:flutter_nt_ten/utils/styles/app_text_style.dart';
@@ -79,6 +79,8 @@ addTaskDialog({
                   children: [
                     IconButton(
                       onPressed: () async {
+                        focusNode1.unfocus();
+                        focusNode2.unfocus();
                         dateTime = await showDatePicker(
                           cancelText: "Cancel",
                           confirmText: "Select",
@@ -99,6 +101,8 @@ addTaskDialog({
                     ),
                     IconButton(
                       onPressed: () async {
+                        focusNode1.unfocus();
+                        focusNode2.unfocus();
                         timeOfDay = await showTimePicker(
                           context: context,
                           initialEntryMode: TimePickerEntryMode.input,
@@ -114,7 +118,7 @@ addTaskDialog({
 
                         if (timeOfDay != null) {
                           DateTime d = taskModel.deadline;
-                          d.copyWith(
+                          d = d.copyWith(
                             hour: timeOfDay!.hour,
                             minute: timeOfDay!.minute,
                           );
@@ -127,6 +131,8 @@ addTaskDialog({
                     ),
                     IconButton(
                       onPressed: () async {
+                        focusNode1.unfocus();
+                        focusNode2.unfocus();
                         showCategorySelectDialog(
                           context: context,
                           categorySelection: (selectedCategory) {
@@ -143,6 +149,8 @@ addTaskDialog({
                     ),
                     IconButton(
                       onPressed: () {
+                        focusNode1.unfocus();
+                        focusNode2.unfocus();
                         showPrioritySelectDialog(
                           p: taskModel.priority,
                           context: context,

@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_nt_ten/data/models/task_model.dart';
+import 'package:flutter_nt_ten/data/models/task/task_model.dart';
 import 'package:flutter_nt_ten/utils/styles/app_text_style.dart';
 
 class TaskItemView extends StatelessWidget {
-  const TaskItemView({super.key, required this.taskModel, required this.onDelete, required this.onUpdate, required this.onStatusUpdate});
+  const TaskItemView(
+      {super.key,
+      required this.taskModel,
+      required this.onDelete,
+      required this.onUpdate,
+      required this.onStatusUpdate});
 
   final TaskModel taskModel;
   final VoidCallback onDelete;
@@ -76,7 +81,7 @@ class TaskItemView extends StatelessWidget {
                 ),
               ),
               IconButton(
-                onPressed:onUpdate,
+                onPressed: onUpdate,
                 icon: const Icon(
                   Icons.edit,
                   color: Colors.green,
@@ -93,7 +98,14 @@ class TaskItemView extends StatelessWidget {
                 ),
               )
             ],
-          )
+          ),
+          Text(
+            taskModel.deadline.toString(),
+            style: AppTextStyle.interSemiBold.copyWith(
+              fontSize: 20,
+              color: Colors.black,
+            ),
+          ),
         ],
       ),
     );
