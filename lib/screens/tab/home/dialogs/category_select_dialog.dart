@@ -1,24 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_nt_ten/data/local/local_database.dart';
+import 'package:flutter_nt_ten/data/models/category/category_model.dart';
+import 'package:flutter_nt_ten/screens/routes.dart';
 import 'package:flutter_nt_ten/utils/size/size_utils.dart';
 
 showCategorySelectDialog({
   required BuildContext context,
-  required ValueChanged<String> categorySelection,
-  required String category,
-}) {
-  String selectedCategory = category;
+  required ValueChanged<int> categorySelection,
+  required int category,
+}) async {
+  int selectedCategoryId = category;
 
-  List<String> categories = [
-    "work",
-    "study",
-    "sport",
-    "design",
-    "music",
-    "home",
-    "movie"
-  ];
+  List<CategoryModel> categories = await LocalDatabase.getAllCategories();
+  if (!context.mounted) return;
 
   showDialog(
     context: context,
@@ -33,27 +29,43 @@ showCategorySelectDialog({
               mainAxisSize: MainAxisSize.min,
               children: [
                 const Text("Task Priority"),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Expanded(
                   child: GridView.count(
                     crossAxisCount: 4,
-                    children: List.generate(categories.length, (index) {
+                    children: List.generate(categories.length + 1, (index) {
+                      if (index == categories.length) {
+                        return TextButton(
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                  context, RouteNames.addCategory,
+                                  arguments: () async {
+                                categories =
+                                    await LocalDatabase.getAllCategories();
+                                setState(() {});
+                              });
+                            },
+                            child: const Text("Add NEW"));
+                      }
                       return Column(
                         children: [
                           GestureDetector(
                             onTap: () {
                               setState(() {
-                                selectedCategory = categories[index];
+                                selectedCategoryId = categories[index].id!;
                               });
                             },
                             child: Icon(
-                              Icons.category,
-                              color: selectedCategory == categories[index]
+                              IconData(
+                                int.parse(categories[index].iconPath),
+                                fontFamily: "MaterialIcons",
+                              ),
+                              color: selectedCategoryId == categories[index].id
                                   ? Colors.green
                                   : Colors.black,
                             ),
                           ),
-                          Text(categories[index]),
+                          Text(categories[index].name),
                         ],
                       );
                     }),
@@ -66,16 +78,16 @@ showCategorySelectDialog({
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        child: Text("CANCEL"),
+                        child: const Text("CANCEL"),
                       ),
                     ),
                     Expanded(
                       child: TextButton(
                         onPressed: () {
-                          categorySelection.call(selectedCategory);
+                          categorySelection.call(selectedCategoryId);
                           Navigator.pop(context);
                         },
-                        child: Text("SAVE"),
+                        child: const Text("SAVE"),
                       ),
                     )
                   ],

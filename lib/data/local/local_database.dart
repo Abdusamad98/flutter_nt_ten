@@ -57,7 +57,7 @@ class LocalDatabase {
       ${TaskModelConstants.description} $textType,
       ${TaskModelConstants.deadline} $textType,
       ${TaskModelConstants.status} $textType,
-      ${TaskModelConstants.category} $textType,
+      ${TaskModelConstants.category} $intType,
       ${TaskModelConstants.priority} $intType
     )''');
 
@@ -155,6 +155,30 @@ class LocalDatabase {
     List json =
         await db.query(CategoryModelConstants.tableName, orderBy: orderBy);
     return json.map((e) => CategoryModel.fromJson(e)).toList();
+  }
+
+  static Future<CategoryModel> getCategoryByName(String name) async {
+    final db = await databaseInstance.database;
+    String orderBy = "${CategoryModelConstants.id} DESC"; //"_id DESC"
+    List json = await db.query(
+      CategoryModelConstants.tableName,
+      orderBy: orderBy,
+      where: "${CategoryModelConstants.name} = ?",
+      whereArgs: [name],
+    );
+    return json.map((e) => CategoryModel.fromJson(e)).toList()[0];
+  }
+
+  static Future<CategoryModel> getCategoryById(int id) async {
+    final db = await databaseInstance.database;
+    String orderBy = "${CategoryModelConstants.id} DESC"; //"_id DESC"
+    List json = await db.query(
+      CategoryModelConstants.tableName,
+      orderBy: orderBy,
+      where: "${CategoryModelConstants.id} = ?",
+      whereArgs: [id],
+    );
+    return json.map((e) => CategoryModel.fromJson(e)).toList()[0];
   }
 
   void function() {

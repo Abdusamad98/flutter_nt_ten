@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_nt_ten/data/local/local_database.dart';
+import 'package:flutter_nt_ten/data/models/category/category_model.dart';
 import 'package:flutter_nt_ten/data/models/task/task_model.dart';
 import 'package:flutter_nt_ten/utils/styles/app_text_style.dart';
 
@@ -36,13 +38,22 @@ class TaskItemView extends StatelessWidget {
                   color: Colors.black,
                 ),
               ),
-              Text(
-                taskModel.category,
-                style: AppTextStyle.interSemiBold.copyWith(
-                  fontSize: 20,
-                  color: Colors.black,
-                ),
-              ),
+              FutureBuilder<CategoryModel>(
+                  future: LocalDatabase.getCategoryById(taskModel.categoryId),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      CategoryModel category = snapshot.data as CategoryModel;
+                      return Text(
+                        category.name,
+                        style: AppTextStyle.interSemiBold.copyWith(
+                          fontSize: 20,
+                          color: Colors.black,
+                        ),
+                      );
+                    }
+
+                    return const Center(child: CircularProgressIndicator());
+                  })
             ],
           ),
           Text(
@@ -55,13 +66,13 @@ class TaskItemView extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                taskModel.category,
-                style: AppTextStyle.interSemiBold.copyWith(
-                  fontSize: 20,
-                  color: Colors.black,
-                ),
-              ),
+              // Text(
+              //   taskModel,
+              //   style: AppTextStyle.interSemiBold.copyWith(
+              //     fontSize: 20,
+              //     color: Colors.black,
+              //   ),
+              // ),
               Text(
                 taskModel.priority.toString(),
                 style: AppTextStyle.interSemiBold.copyWith(

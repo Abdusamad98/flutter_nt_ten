@@ -63,7 +63,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                           key: StorageKeys.onBoardingState,
                           value: true,
                         );
-                        Navigator.pushNamed(context, RouteNames.tabBox);
+                        Navigator.pushReplacementNamed(context, RouteNames.tabBox);
                       }
 
                       _scrollPage(activeIndex);

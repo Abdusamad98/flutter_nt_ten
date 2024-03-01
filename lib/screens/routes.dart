@@ -14,7 +14,11 @@ class AppRoutes {
       case RouteNames.onBoarding:
         return navigate(const OnBoardingScreen());
       case RouteNames.addCategory:
-        return navigate(const AddCategoryScreen());
+        return navigate(
+          AddCategoryScreen(
+            onCategoryAdded: settings.arguments as VoidCallback?,
+          ),
+        );
       default:
         return navigate(
           const Scaffold(

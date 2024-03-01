@@ -18,7 +18,7 @@ addTaskDialog({
   DateTime? dateTime;
   TimeOfDay? timeOfDay;
 
-  String category = "work";
+  int category = 0;
   int priority = 1;
 
   final FocusNode focusNode1 = FocusNode();
@@ -140,7 +140,7 @@ addTaskDialog({
                               category = selectedCategory;
                             });
                             taskModel =
-                                taskModel.copyWith(category: selectedCategory);
+                                taskModel.copyWith(categoryId: selectedCategory);
                           },
                           category: category,
                         );
@@ -194,12 +194,6 @@ addTaskDialog({
                       Text(DateFormat.yMMMEd().format(dateTime!)),
                     ],
                   ),
-                Row(
-                  children: [
-                    const Text("CATEGORY: "),
-                    Text(category),
-                  ],
-                ),
               ],
             ),
           ),
