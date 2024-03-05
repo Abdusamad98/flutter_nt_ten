@@ -1,10 +1,8 @@
-import 'package:flutter/cupertino.dart';
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_nt_ten/data/local/storage_repository.dart';
 import 'package:flutter_nt_ten/data/models/my_response.dart';
 import 'package:flutter_nt_ten/data/models/product_model.dart';
 import 'package:flutter_nt_ten/data/repositories/product_repo.dart';
-import 'package:flutter_nt_ten/utils/colors/app_colors.dart';
 
 class ProductsScreen extends StatefulWidget {
   const ProductsScreen({super.key});
@@ -16,36 +14,40 @@ class ProductsScreen extends StatefulWidget {
 class _ProductsScreenState extends State<ProductsScreen> {
   final ProductRepo productRepo = ProductRepo();
 
-  bool isDarkMode = false;
+  bool isDark = false;
+
+  _init() async {
+    isDark = await AdaptiveTheme.getThemeMode() == AdaptiveThemeMode.dark;
+    setState(() {});
+  }
 
   @override
   void initState() {
-    setState(() {
-      isDarkMode = StorageRepository.getBool(key: "theme_mode");
-    });
+    _init();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.white,
       appBar: AppBar(
         actions: [
-          CupertinoSwitch(
-            value: isDarkMode,
+          Switch(
+            value: isDark,
             onChanged: (v) async {
-              setState(() {
-                isDarkMode = !isDarkMode;
-              });
-              await StorageRepository.setBool(
-                key: "theme_mode",
-                value: isDarkMode,
-              );
+              if (v) {
+                AdaptiveTheme.of(context).setDark();
+              } else {
+                AdaptiveTheme.of(context).setLight();
+              }
+              isDark = v;
             },
           ),
         ],
-        title: const Text("Products Create, Read, Update Delete"),
+        title: Text(
+          "Products Create, Read, Update Delete",
+          style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 18),
+        ),
       ),
       body: FutureBuilder<MyResponse>(
         future: productRepo.getAllProducts(),
@@ -64,8 +66,12 @@ class _ProductsScreenState extends State<ProductsScreen> {
                 ...List.generate(products.length, (index) {
                   var product = products[index];
                   return ListTile(
-                      title: Text(product.productName),
-                      subtitle: Text(product.description),
+                      title: Text(product.productName,
+                          style: Theme.of(context).textTheme.titleMedium),
+                      subtitle: Text(
+                        product.description,
+                        style: Theme.of(context).textTheme.titleSmall,
+                      ),
                       leading: Image.network(
                         product.imageUrl,
                         width: 42,
@@ -89,6 +95,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                                 await productRepo.updateProduct(productModel);
                                 setState(() {});
                               },
+                              style: Theme.of(context).iconButtonTheme.style,
                               icon: const Icon(
                                 Icons.edit,
                                 color: Colors.green,
@@ -100,6 +107,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                                     .deleteProduct(product.productId);
                                 setState(() {});
                               },
+                              style: Theme.of(context).iconButtonTheme.style,
                               icon: const Icon(
                                 Icons.delete,
                                 color: Colors.red,
@@ -122,7 +130,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
             description: "Zo'r telefon",
             productName: "Samsung Galaxy S21",
             imageUrl:
-                "https://www.cnet.com/a/img/resize/3e495e5ec2d57f5893947cb6497fd9f4cf236c4e/hub/2021/01/20/5ac18449-617c-49ba-83f2-2971cb51078c/215-samsung-galaxy-s21-ultra-back.jpg",
+                "https://dam.which.co.uk/IC20006-0452-00-front-800x600.jpg",
             price: 1500.0,
             dateTime: DateTime.now(),
             productId: "",

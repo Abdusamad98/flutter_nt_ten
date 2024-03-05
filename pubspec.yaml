@@ -38,6 +38,7 @@ dependencies:
   flutter_svg: ^2.0.9
   http: ^1.2.0
   shared_preferences: ^2.2.2
+  adaptive_theme: ^3.6.0
 
 dev_dependencies:
   flutter_test:

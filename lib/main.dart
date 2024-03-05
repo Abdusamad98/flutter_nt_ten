@@ -1,11 +1,12 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_nt_ten/data/local/storage_repository.dart';
 import 'package:flutter_nt_ten/products_screen.dart';
+import 'package:flutter_nt_ten/utils/theme/app_theme.dart';
 
-void main() {
-
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  StorageRepository();
+  await StorageRepository.init();
   runApp(MyApp());
 }
 
@@ -14,9 +15,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: ProductsScreen(),
+    return AdaptiveTheme(
+      light: AppTheme.lightTheme,
+      dark: AppTheme.darkTheme,
+      initial: AdaptiveThemeMode.system,
+      builder: (theme, darkTheme) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: theme,
+          darkTheme: darkTheme,
+          home: ProductsScreen(),
+        );
+      },
     );
   }
 }
