@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_nt_ten/data/local/storage_repository.dart';
 import 'package:flutter_nt_ten/data/models/my_response.dart';
 import 'package:flutter_nt_ten/data/models/product_model.dart';
 import 'package:flutter_nt_ten/data/repositories/product_repo.dart';
@@ -14,11 +16,35 @@ class ProductsScreen extends StatefulWidget {
 class _ProductsScreenState extends State<ProductsScreen> {
   final ProductRepo productRepo = ProductRepo();
 
+  bool isDarkMode = false;
+
+  @override
+  void initState() {
+    setState(() {
+      isDarkMode = StorageRepository.getBool(key: "theme_mode");
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: AppBar(
+        actions: [
+          CupertinoSwitch(
+            value: isDarkMode,
+            onChanged: (v) async {
+              setState(() {
+                isDarkMode = !isDarkMode;
+              });
+              await StorageRepository.setBool(
+                key: "theme_mode",
+                value: isDarkMode,
+              );
+            },
+          ),
+        ],
         title: const Text("Products Create, Read, Update Delete"),
       ),
       body: FutureBuilder<MyResponse>(

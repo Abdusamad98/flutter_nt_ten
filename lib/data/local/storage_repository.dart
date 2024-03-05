@@ -54,7 +54,7 @@ class StorageRepository {
     required bool value,
   }) async {
     if (_preference != null) {
-      debugPrint("SAVING BOOL:$value");
+      debugPrint("SAVING BOOL:$value ");
       _preference!.setBool(key, value);
     }
   }
