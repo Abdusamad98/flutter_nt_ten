@@ -1,0 +1,11 @@
+{
+  "user_name": "Foydalanuvchining ismi:",
+  "user_lastname": "Foydalanuvchining familiyasi:",
+  "user_age": "Yoshi:",
+  "product_detail_screen": {
+    "product_name": "Maxsulot nomi",
+    "product_price": "Maxsulot narxi:"
+  },
+  "count_of_people": "Bugun kinoga {} ta odam tushdi",
+  "som": "so'm"
+}

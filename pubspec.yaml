@@ -38,6 +38,7 @@ dependencies:
   flutter_svg: ^2.0.9
   http: ^1.2.0
   shared_preferences: ^2.2.2
+  easy_localization: ^3.0.5
 
 dev_dependencies:
   flutter_test:
@@ -51,7 +52,7 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
-    -
+    - assets/translations/
   fonts:
      - family: Inter
        fonts:

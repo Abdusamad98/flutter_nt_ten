@@ -1,0 +1,11 @@
+{
+  "user_name": "Имя пользователя:",
+  "user_lastname": "Фамилия:",
+  "user_age": "Возраст:",
+  "product_detail_screen": {
+    "product_name": "Наименование товара",
+    "product_price": "Цена продукта:"
+  },
+  "count_of_people": "{} человек сегодня пошли в кино",
+  "som": "сум"
+}
