@@ -107,7 +107,7 @@ class AppTheme {
       ),
     ),
     iconButtonTheme: IconButtonThemeData(
-        style: IconButton.styleFrom(backgroundColor: Colors.black)),
+        style: IconButton.styleFrom(backgroundColor: Colors.transparent)),
     switchTheme: SwitchThemeData(
       thumbColor: MaterialStateProperty.all((Colors.black)),
       trackOutlineColor: MaterialStateProperty.all((Colors.red)),

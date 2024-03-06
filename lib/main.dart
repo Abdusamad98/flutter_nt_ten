@@ -1,7 +1,8 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_nt_ten/data/local/storage_repository.dart';
-import 'package:flutter_nt_ten/products_screen.dart';
+import 'package:flutter_nt_ten/screens/home/home_screen.dart';
+import 'package:flutter_nt_ten/screens/products_screen.dart';
 import 'package:flutter_nt_ten/utils/theme/app_theme.dart';
 
 void main() async {
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: theme,
           darkTheme: darkTheme,
-          home: ProductsScreen(),
+          home: HomeScreen(),
         );
       },
     );
