@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_nt_ten/screens/widgets/my_pinned_view.dart';
+import 'package:flutter_nt_ten/screens/hello/widgets/my_pinned_view.dart';
 import 'package:flutter_nt_ten/utils/colors/app_colors.dart';
 import 'package:flutter_nt_ten/utils/images/app_images.dart';
 
