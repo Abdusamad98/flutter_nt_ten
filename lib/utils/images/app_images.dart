@@ -6,6 +6,8 @@ class AppImages {
   static const String delete = "assets/icons/delete.svg";
 
   //.jpg
+  static const String car = "assets/images/car.jpg";
+
 
   //.gif
 }
