@@ -140,7 +140,6 @@ class _ExampleScreenState extends State<ExampleScreen> {
           SliverPersistentHeader(
             delegate: CategoriesView(
               onTap: () {
-
               },
             ),
             pinned: true,
