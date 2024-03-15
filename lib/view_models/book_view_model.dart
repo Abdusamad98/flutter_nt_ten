@@ -33,6 +33,7 @@ class BookViewModel extends ChangeNotifier {
 
     if (myResponse.errorText.isEmpty) {
       statusText = myResponse.data as String;
+      getAllBooks();
     } else {
       statusText = myResponse.errorText;
     }
@@ -45,6 +46,7 @@ class BookViewModel extends ChangeNotifier {
 
     if (myResponse.errorText.isEmpty) {
       statusText = myResponse.data as String;
+      getAllBooks();
     } else {
       statusText = myResponse.errorText;
     }
@@ -57,6 +59,7 @@ class BookViewModel extends ChangeNotifier {
 
     if (myResponse.errorText.isEmpty) {
       statusText = myResponse.data as String;
+      getAllBooks();
     } else {
       statusText = myResponse.errorText;
     }
