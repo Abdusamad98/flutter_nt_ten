@@ -1,13 +1,13 @@
 import 'dart:convert';
 
 import 'package:flutter_nt_ten/data/models/my_response.dart';
-import 'package:flutter_nt_ten/data/models/product_model.dart';
+import 'package:flutter_nt_ten/data/models/book_model.dart';
 import 'package:flutter_nt_ten/utils/constants/app_constants.dart';
 import 'package:http/http.dart' as http;
 
 class ApiProvider {
-  static Future<MyResponse> getAllProducts() async {
-    Uri uri = Uri.https(AppConstants.baseUrl, "/api/v1/products");
+  static Future<MyResponse> getAllBooks() async {
+    Uri uri = Uri.https(AppConstants.baseUrl, "/api/v1/books");
     try {
       http.Response response = await http.get(
         uri,
@@ -20,7 +20,7 @@ class ApiProvider {
       if (response.statusCode == 200) {
         return MyResponse(
           data: (jsonDecode(response.body)["items"] as List?)
-                  ?.map((e) => ProductModel.fromJson(e))
+                  ?.map((e) => BookModel.fromJson(e))
                   .toList() ??
               [],
         );
@@ -31,8 +31,8 @@ class ApiProvider {
     }
   }
 
-  static Future<MyResponse> addProduct(ProductModel productModel) async {
-    Uri uri = Uri.https(AppConstants.baseUrl, "/api/v1/products");
+  static Future<MyResponse> addBook(BookModel productModel) async {
+    Uri uri = Uri.https(AppConstants.baseUrl, "/api/v1/books");
     try {
       http.Response response = await http.post(
         uri,
@@ -51,8 +51,8 @@ class ApiProvider {
     }
   }
 
-  static Future<MyResponse> deleteProduct(String productUUID) async {
-    Uri uri = Uri.https(AppConstants.baseUrl, "/api/v1/products");
+  static Future<MyResponse> deleteBook(String productUUID) async {
+    Uri uri = Uri.https(AppConstants.baseUrl, "/api/v1/books");
     try {
       http.Response response = await http.delete(
         uri,
@@ -73,8 +73,8 @@ class ApiProvider {
     }
   }
 
-  static Future<MyResponse> updateProduct(ProductModel productModel) async {
-    Uri uri = Uri.https(AppConstants.baseUrl, "/api/v1/products");
+  static Future<MyResponse> updateBook(BookModel productModel) async {
+    Uri uri = Uri.https(AppConstants.baseUrl, "/api/v1/books");
     try {
       http.Response response = await http.put(
         uri,
