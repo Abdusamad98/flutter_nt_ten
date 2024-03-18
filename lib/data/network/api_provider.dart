@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_nt_ten/data/models/my_response.dart';
 import 'package:flutter_nt_ten/data/models/book_model.dart';
 import 'package:flutter_nt_ten/utils/constants/app_constants.dart';
@@ -7,6 +8,7 @@ import 'package:http/http.dart' as http;
 
 class ApiProvider {
   static Future<MyResponse> getAllBooks() async {
+    debugPrint("CALLED");
     Uri uri = Uri.https(AppConstants.baseUrl, "/api/v1/books");
     try {
       http.Response response = await http.get(

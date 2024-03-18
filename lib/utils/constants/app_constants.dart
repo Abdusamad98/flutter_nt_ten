@@ -1,4 +1,4 @@
 class AppConstants {
   static String baseUrl = "crudapi.co.uk";
-  static String token = "06Z9LYaIQ3q1EKcz3Lglci_SUjfg9czfeY2HDum4ezqqwTDj3w";
+  static String token = "7-YK7s7R9B1cFy-cvl_NI69d-9sD5tF-1D_OdL4Qpx8dHxBlfA";
 }
