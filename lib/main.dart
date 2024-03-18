@@ -4,9 +4,11 @@ import 'package:flutter_nt_ten/data/local/storage_repository.dart';
 import 'package:flutter_nt_ten/data/repositories/book_repo.dart';
 import 'package:flutter_nt_ten/screens/library/library_screen.dart';
 import 'package:flutter_nt_ten/screens/profile/profile_detail_screen.dart';
+import 'package:flutter_nt_ten/screens/second_counter/second_counter_screen.dart';
 import 'package:flutter_nt_ten/utils/theme/app_theme.dart';
 import 'package:flutter_nt_ten/view_models/book_view_model.dart';
 import 'package:flutter_nt_ten/view_models/profile_view_model.dart';
+import 'package:flutter_nt_ten/view_models/second_counter_view_model.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -19,6 +21,7 @@ void main() async {
       providers: [
         ChangeNotifierProvider(
             create: (_) => BookViewModel(productRepo: BookRepo())),
+        ChangeNotifierProvider(create: (_) => SecondCounterViewModel()),
         // ChangeNotifierProvider(create: (_) => ProfileViewModel()),
       ],
       child: MyApp(),
@@ -40,7 +43,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: theme,
           darkTheme: darkTheme,
-          home: LibraryScreen(),
+          home: SecondCounterScreen(),
         );
       },
     );
