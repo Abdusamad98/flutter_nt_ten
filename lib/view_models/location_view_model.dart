@@ -40,9 +40,9 @@ class LocationViewModel extends ChangeNotifier {
     debugPrint("SPEED:${locationData.speed}");
     debugPrint("ALTITUDE:${locationData.altitude}");
 
-    listenCurrentLocation();
+    //listenCurrentLocation();
 
-    location.enableBackgroundMode(enable: true);
+    //location.enableBackgroundMode(enable: true);
   }
 
   void listenCurrentLocation() {

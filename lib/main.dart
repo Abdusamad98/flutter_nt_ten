@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_nt_ten/screens/splash_screen.dart';
-import 'package:flutter_nt_ten/view_models/location_view_model.dart';
+import 'package:flutter_nt_ten/screens/splash/splash_screen.dart';
+import 'package:flutter_nt_ten/view_models/addressess_view_model.dart';
 import 'package:flutter_nt_ten/view_models/maps_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -9,8 +9,8 @@ void main() {
 
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider(create: (_) => LocationViewModel()),
       ChangeNotifierProvider(create: (_) => MapsViewModel()),
+      ChangeNotifierProvider(create: (_) => AddressesViewModel()),
     ],
     child: MyApp(),
   ));
