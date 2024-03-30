@@ -39,6 +39,15 @@ dependencies:
   http: ^1.2.0
   shared_preferences: ^2.2.2
   provider: ^6.1.2
+  firebase_messaging: ^14.7.20
+  image_picker: ^1.0.7
+  firebase_storage: ^11.6.11
+  firebase_core: ^2.24.2
+  google_maps_flutter: ^2.6.0
+  location: ^5.0.3
+  cloud_firestore: ^4.15.9
+  country_picker: ^2.0.25
+  cached_network_image: ^3.3.1
 
 
 dev_dependencies:
@@ -54,12 +63,12 @@ flutter:
     - assets/images/
     - assets/icons/
   fonts:
-     - family: Inter
-       fonts:
-         - asset: assets/fonts/inter/Inter-Black.otf
-         - asset: assets/fonts/inter/Inter-Bold.otf
-         - asset: assets/fonts/inter/Inter-Italic.otf
-         - asset: assets/fonts/inter/Inter-Light.otf
-         - asset: assets/fonts/inter/Inter-Medium.otf
-         - asset: assets/fonts/inter/Inter-Regular.otf
-         - asset: assets/fonts/inter/Inter-SemiBold.otf
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/inter/Inter-Black.otf
+        - asset: assets/fonts/inter/Inter-Bold.otf
+        - asset: assets/fonts/inter/Inter-Italic.otf
+        - asset: assets/fonts/inter/Inter-Light.otf
+        - asset: assets/fonts/inter/Inter-Medium.otf
+        - asset: assets/fonts/inter/Inter-Regular.otf
+        - asset: assets/fonts/inter/Inter-SemiBold.otf

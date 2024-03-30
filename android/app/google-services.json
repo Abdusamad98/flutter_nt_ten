@@ -1,0 +1,90 @@
+{
+  "project_info": {
+    "project_number": "699471060311",
+    "project_id": "gadget-shop-c06b4",
+    "storage_bucket": "gadget-shop-c06b4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:699471060311:android:90f5b815287bff6dd7f212",
+        "android_client_info": {
+          "package_name": "com.example.flutter_nt_ten"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "699471060311-c31vnhg8v828qmtbmjd829bhh3u6ma7b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRo20_Hfk5CjpH_JPE2oUKD_vSXGQoh1Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "699471060311-c31vnhg8v828qmtbmjd829bhh3u6ma7b.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "699471060311-boktfei0alnfbjc140gako8vvncn4opj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.gadgetShop"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:699471060311:android:045dbe99443cfa67d7f212",
+        "android_client_info": {
+          "package_name": "com.example.gadget_shop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "699471060311-s8vv8fdeu4jitselbdjfngjk7j5788bt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gadget_shop",
+            "certificate_hash": "b38c23f4189d467096c6bea9cf236c04cf22334e"
+          }
+        },
+        {
+          "client_id": "699471060311-c31vnhg8v828qmtbmjd829bhh3u6ma7b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRo20_Hfk5CjpH_JPE2oUKD_vSXGQoh1Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "699471060311-c31vnhg8v828qmtbmjd829bhh3u6ma7b.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "699471060311-boktfei0alnfbjc140gako8vvncn4opj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.gadgetShop"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
