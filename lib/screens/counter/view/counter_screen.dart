@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_nt_ten/cubits/counter/counter_cubit.dart';
+import 'package:flutter_nt_ten/screens/counter/cubit/counter_cubit.dart';
 import 'package:flutter_nt_ten/utils/styles/app_text_style.dart';
 
 class CounterScreen extends StatelessWidget {
@@ -8,7 +8,6 @@ class CounterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("CALLED");
     return BlocProvider(
       create: (context) => CounterCubit(),
       child: BlocBuilder<CounterCubit, int>(

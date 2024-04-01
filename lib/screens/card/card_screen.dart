@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_nt_ten/cubits/cards/card_cubit.dart';
 import 'package:flutter_nt_ten/data/models/card_model.dart';
-import 'package:flutter_nt_ten/screens/card_info_screen.dart';
+import 'package:flutter_nt_ten/screens/card/card_info_screen.dart';
 import 'package:flutter_nt_ten/utils/styles/app_text_style.dart';
 
 class CardScreen extends StatelessWidget {
