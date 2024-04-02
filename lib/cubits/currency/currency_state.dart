@@ -1,25 +1,19 @@
 import 'package:flutter_nt_ten/data/models/currency_model.dart';
-import 'package:flutter_nt_ten/data/models/forms_status.dart';
 
-class CurrencyState {
-  final FormsStatus formsStatus;
+abstract class CurrencyState {}
+
+class CurrencyInitialState extends CurrencyState {}
+
+class CurrencyLoadingState extends CurrencyState {}
+
+class CurrencySuccessState extends CurrencyState {
+  CurrencySuccessState({required this.currencies});
+
   final List<CurrencyModel> currencies;
-  final String statusText;
+}
 
-  CurrencyState({
-    required this.formsStatus,
-    required this.statusText,
-    required this.currencies,
-  });
+class CurrencyErrorState extends CurrencyState {
+  CurrencyErrorState({required this.errorText});
 
-  CurrencyState copyWith({
-    FormsStatus? formsStatus,
-    List<CurrencyModel>? currencies,
-    String? statusText,
-  }) =>
-      CurrencyState(
-        formsStatus: formsStatus ?? this.formsStatus,
-        currencies: currencies ?? this.currencies,
-        statusText: statusText ?? this.statusText,
-      );
+  final String errorText;
 }

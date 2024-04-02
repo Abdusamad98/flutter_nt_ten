@@ -27,4 +27,15 @@ class CardCubit extends Cubit<CardModel> {
   insertExpireDate(String value) {
     emit(state.copyWith(expireDate: value));
   }
+
+  setEmptyCard() {
+    emit(
+      CardModel(
+        name: "",
+        cardNumber: "",
+        cardHolder: "",
+        expireDate: "",
+      ),
+    );
+  }
 }
