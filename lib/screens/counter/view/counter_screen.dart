@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_nt_ten/screens/counter/cubit/counter_cubit.dart';
+import 'package:flutter_nt_ten/screens/counter/bloc/counter_bloc.dart';
+import 'package:flutter_nt_ten/screens/counter/bloc/counter_event.dart';
 import 'package:flutter_nt_ten/utils/styles/app_text_style.dart';
 
 class CounterScreen extends StatelessWidget {
@@ -9,8 +10,8 @@ class CounterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => CounterCubit(),
-      child: BlocBuilder<CounterCubit, int>(
+      create: (context) => CounterBloc(),
+      child: BlocBuilder<CounterBloc, int>(
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(title: const Text("Counter Screen")),
@@ -27,14 +28,14 @@ class CounterScreen extends StatelessWidget {
               children: [
                 FloatingActionButton(
                   onPressed: () {
-                    context.read<CounterCubit>().increment();
+                    context.read<CounterBloc>().add(IncrementEvent(value: 10));
                   },
                   child: const Icon(Icons.add),
                 ),
                 const SizedBox(width: 12),
                 FloatingActionButton(
                   onPressed: () {
-                    context.read<CounterCubit>().decrement();
+                    context.read<CounterBloc>().add(DecrementEvent());
                   },
                   child: const Icon(Icons.remove),
                 ),

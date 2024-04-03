@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_nt_ten/cubits/calculator/calculator_cubit.dart';
-import 'package:flutter_nt_ten/cubits/cards/card_cubit.dart';
-import 'package:flutter_nt_ten/cubits/currency/currency_cubit.dart';
+import 'package:flutter_nt_ten/blocs/calculator/calculator_cubit.dart';
+import 'package:flutter_nt_ten/blocs/cards/card_bloc.dart';
+import 'package:flutter_nt_ten/blocs/currency/currency_bloc.dart';
+import 'package:flutter_nt_ten/blocs/currency/currency_event.dart';
 import 'package:flutter_nt_ten/data/repositories/currency_repository.dart';
-import 'package:flutter_nt_ten/screens/calculator/calculator_screen.dart';
+import 'package:flutter_nt_ten/screens/card/card_screen.dart';
+import 'package:flutter_nt_ten/screens/currencies/currencies_screen.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -17,11 +19,9 @@ class App extends StatelessWidget {
       ],
       child: MultiBlocProvider(
         providers: [
-          BlocProvider(create: (_) => CardCubit()),
+          BlocProvider(create: (_) => CardBloc()),
           BlocProvider(
-            create: (_) => CurrencyCubit(
-                currencyRepository: context.read<CurrencyRepository>())
-              ..fetchCurrencies(),
+            create: (_) => CurrencyBloc()..add(GetCurrenciesEvent()),
           ),
           BlocProvider(create: (_) => CalculatorCubit()),
         ],
@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(useMaterial3: false),
-      home: const CalculatorScreen(),
+      home: const CardScreen(),
     );
   }
 }

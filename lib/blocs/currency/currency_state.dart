@@ -17,3 +17,6 @@ class CurrencyErrorState extends CurrencyState {
 
   final String errorText;
 }
+
+class CurrencyDeletedState extends CurrencyState {}
+

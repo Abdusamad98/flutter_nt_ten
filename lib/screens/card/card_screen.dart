@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_nt_ten/cubits/cards/card_cubit.dart';
-import 'package:flutter_nt_ten/data/models/card_model.dart';
+import 'package:flutter_nt_ten/blocs/cards/card_bloc.dart';
+import 'package:flutter_nt_ten/blocs/cards/card_event.dart';
+import 'package:flutter_nt_ten/blocs/cards/card_state.dart';
 import 'package:flutter_nt_ten/screens/card/card_info_screen.dart';
 import 'package:flutter_nt_ten/utils/styles/app_text_style.dart';
 
@@ -20,7 +21,8 @@ class CardScreen extends StatelessWidget {
             child: Column(
           children: [
             TextField(
-              onChanged: context.read<CardCubit>().insertName,
+              onChanged: (v) =>
+                  context.read<CardBloc>().add(CardInsertNameEvent(v)),
               decoration: InputDecoration(
                 labelText: "Card Name",
                 border: OutlineInputBorder(
@@ -30,9 +32,8 @@ class CardScreen extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             TextField(
-              onChanged: (v) {
-                context.read<CardCubit>().insertCardNumber(v);
-              },
+              onChanged: (v) =>
+                  context.read<CardBloc>().add(CardInsertNumberEvent(v)),
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 labelText: "Card Number",
@@ -43,7 +44,8 @@ class CardScreen extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             TextField(
-              onChanged: context.read<CardCubit>().insertCardHolder,
+              onChanged: (v) =>
+                  context.read<CardBloc>().add(CardInsertHolderNameEvent(v)),
               decoration: InputDecoration(
                 labelText: "Card Holder Name",
                 border: OutlineInputBorder(
@@ -54,7 +56,8 @@ class CardScreen extends StatelessWidget {
             const SizedBox(height: 10),
             TextField(
               keyboardType: TextInputType.datetime,
-              onChanged: context.read<CardCubit>().insertExpireDate,
+              onChanged: (v) =>
+                  context.read<CardBloc>().add(CardInsertExpireDateEvent(v)),
               decoration: InputDecoration(
                 labelText: "Card Expire date",
                 border: OutlineInputBorder(
@@ -84,7 +87,7 @@ class CardScreen extends StatelessWidget {
                   style: AppTextStyle.interSemiBold.copyWith(fontSize: 18),
                 ),
                 Text(
-                  context.watch<CardCubit>().state.cardHolder,
+                  context.watch<CardBloc>().state.cardHolder,
                   style: AppTextStyle.interSemiBold.copyWith(fontSize: 18),
                 ),
               ],
@@ -97,7 +100,7 @@ class CardScreen extends StatelessWidget {
                   style: AppTextStyle.interSemiBold.copyWith(fontSize: 18),
                 ),
                 Text(
-                  context.watch<CardCubit>().state.cardNumber,
+                  context.watch<CardBloc>().state.cardNumber,
                   style: AppTextStyle.interSemiBold.copyWith(fontSize: 18),
                 ),
               ],
@@ -110,7 +113,7 @@ class CardScreen extends StatelessWidget {
                   style: AppTextStyle.interSemiBold.copyWith(fontSize: 18),
                 ),
                 Text(
-                  context.watch<CardCubit>().state.expireDate,
+                  context.watch<CardBloc>().state.expireDate,
                   style: AppTextStyle.interSemiBold.copyWith(fontSize: 18),
                 ),
               ],
@@ -123,10 +126,22 @@ class CardScreen extends StatelessWidget {
                   style: AppTextStyle.interSemiBold.copyWith(fontSize: 18),
                 ),
                 Text(
-                  context.watch<CardCubit>().state.name,
+                  context.watch<CardBloc>().state.name,
                   style: AppTextStyle.interSemiBold.copyWith(fontSize: 18),
                 ),
               ],
+            ),
+            BlocListener<CardBloc, CardState>(
+              listenWhen: (previous, current) {
+                //debugPrint("PREVIOUS:${previous.name}");
+                //debugPrint("CURRENT:${current.name}");
+                return previous.name != current.name;
+              },
+              listener: (context, state) {
+                debugPrint("STATE:${state.toString()}");
+                if (state.name == "Falonchi") {}
+              },
+              child: const SizedBox(),
             )
           ],
         )),

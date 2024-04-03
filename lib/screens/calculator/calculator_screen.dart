@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_nt_ten/cubits/calculator/calculator_cubit.dart';
+import 'package:flutter_nt_ten/blocs/calculator/calculator_cubit.dart';
 import 'package:flutter_nt_ten/utils/styles/app_text_style.dart';
 
 class CalculatorScreen extends StatefulWidget {

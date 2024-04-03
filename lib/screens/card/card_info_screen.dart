@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_nt_ten/cubits/cards/card_cubit.dart';
+import 'package:flutter_nt_ten/blocs/cards/card_bloc.dart';
 import 'package:flutter_nt_ten/utils/styles/app_text_style.dart';
 
 class CardInfoScreen extends StatelessWidget {
@@ -24,7 +24,7 @@ class CardInfoScreen extends StatelessWidget {
                     style: AppTextStyle.interSemiBold.copyWith(fontSize: 18),
                   ),
                   Text(
-                    context.watch<CardCubit>().state.cardHolder,
+                    context.watch<CardBloc>().state.cardHolder,
                     style: AppTextStyle.interSemiBold.copyWith(fontSize: 18),
                   ),
                 ],
@@ -37,7 +37,7 @@ class CardInfoScreen extends StatelessWidget {
                     style: AppTextStyle.interSemiBold.copyWith(fontSize: 18),
                   ),
                   Text(
-                    context.watch<CardCubit>().state.cardNumber,
+                    context.watch<CardBloc>().state.cardNumber,
                     style: AppTextStyle.interSemiBold.copyWith(fontSize: 18),
                   ),
                 ],
@@ -50,7 +50,7 @@ class CardInfoScreen extends StatelessWidget {
                     style: AppTextStyle.interSemiBold.copyWith(fontSize: 18),
                   ),
                   Text(
-                    context.watch<CardCubit>().state.expireDate,
+                    context.watch<CardBloc>().state.expireDate,
                     style: AppTextStyle.interSemiBold.copyWith(fontSize: 18),
                   ),
                 ],
@@ -63,7 +63,7 @@ class CardInfoScreen extends StatelessWidget {
                     style: AppTextStyle.interSemiBold.copyWith(fontSize: 18),
                   ),
                   Text(
-                    context.watch<CardCubit>().state.name,
+                    context.watch<CardBloc>().state.name,
                     style: AppTextStyle.interSemiBold.copyWith(fontSize: 18),
                   ),
                 ],
