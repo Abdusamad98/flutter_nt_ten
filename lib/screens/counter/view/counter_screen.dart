@@ -11,7 +11,7 @@ class CounterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => CounterBloc(),
-      child: BlocBuilder<CounterBloc, int>(
+      child: BlocConsumer<CounterBloc, int>(
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(title: const Text("Counter Screen")),
@@ -42,6 +42,16 @@ class CounterScreen extends StatelessWidget {
               ],
             ),
           );
+        },
+        buildWhen: (previous, current) {
+          return current > 100;
+        },
+        listener: (context, state) {
+
+          print(state);
+        },
+        listenWhen: (previous, current) {
+          return false;
         },
       ),
     );

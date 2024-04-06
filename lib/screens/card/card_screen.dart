@@ -138,7 +138,7 @@ class CardScreen extends StatelessWidget {
                 return previous.name != current.name;
               },
               listener: (context, state) {
-                debugPrint("STATE:${state.toString()}");
+               // debugPrint("STATE:${state.toString()}");
                 if (state.name == "Falonchi") {}
               },
               child: const SizedBox(),

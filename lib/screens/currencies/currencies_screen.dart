@@ -4,13 +4,13 @@ import 'package:flutter_nt_ten/blocs/currency/currency_bloc.dart';
 import 'package:flutter_nt_ten/blocs/currency/currency_event.dart';
 import 'package:flutter_nt_ten/blocs/currency/currency_state.dart';
 import 'package:flutter_nt_ten/data/models/currency_model.dart';
+import 'package:flutter_nt_ten/utils/styles/app_text_style.dart';
 
 class CurrenciesScreen extends StatelessWidget {
   const CurrenciesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    //context.read<CurrencyRepository>();
     return Scaffold(
       appBar: AppBar(title: const Text("Currencies")),
       body: Column(
@@ -21,7 +21,8 @@ class CurrenciesScreen extends StatelessWidget {
             },
             builder: (context, state) {
               if (state is CurrencyLoadingState) {
-                return const Center(child: CircularProgressIndicator());
+                return const Expanded(
+                    child: Center(child: CircularProgressIndicator()));
               }
               if (state is CurrencyErrorState) {
                 return Column(
@@ -51,36 +52,43 @@ class CurrenciesScreen extends StatelessWidget {
               return const SizedBox();
             },
           ),
-          // Container(
-          //   height: 300,
-          //   color: Colors.red,
-          //   width: double.infinity,
-          // ),
-          BlocListener<CurrencyBloc, CurrencyState>(
-            listener: (context, state) {
-              if (state is CurrencySuccessState) {
-                if (state.currencies.isNotEmpty) {
-                  //  Navigator.
-                }
-              }
+          // BlocListener<CurrencyBloc, CurrencyState>(
+          //   listener: (context, state) {
+          //     if (state is CurrencySuccessState) {
+          //       if (state.currencies.isNotEmpty) {
+          //         //  Navigator.
+          //       }
+          //     }
+          //
+          //     if (state is CurrencyDeletedState) {
+          //       Future.microtask(
+          //         () => ScaffoldMessenger.of(context).showSnackBar(
+          //           const SnackBar(
+          //             duration: Duration(seconds: 1),
+          //             content: Text("DELETED"),
+          //           ),
+          //         ),
+          //       );
+          //     }
+          //   },
+          //   child: Container(
+          //     height: 300,
+          //     color: Colors.red,
+          //     width: double.infinity,
+          //   ),
+          // )
 
-              if (state is CurrencyDeletedState) {
-                Future.microtask(
-                  () => ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      duration: Duration(seconds: 1),
-                      content: Text("DELETED"),
-                    ),
-                  ),
-                );
-              }
+          TextButton(
+            onPressed: () {
+              context.read<CurrencyBloc>().add(GetCurrenciesEvent());
             },
-            child: Container(
-              height: 300,
-              color: Colors.red,
-              width: double.infinity,
+            child: Text(
+              "GET ALL CURRENCIES",
+              style: AppTextStyle.interSemiBold.copyWith(fontSize: 24),
             ),
-          )
+          ),
+
+          const SizedBox(height: 24),
         ],
       ),
     );
