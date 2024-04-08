@@ -82,7 +82,7 @@ class CardModel {
     return CardModel(
       uuid: json["uuid"] as String? ?? "",
       color: json["color"] as String? ?? "",
-      amount: json["amount"] as double? ?? 0.0,
+      amount: (json["amount"] as num? ?? 0.0).toDouble(),
       cardNumber: json["card_number"] as String? ?? "",
       expireDate: json["expire_date"] as String? ?? "",
       bankName: json["ban_name"] as String? ?? "",

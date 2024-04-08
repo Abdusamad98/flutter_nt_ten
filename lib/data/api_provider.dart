@@ -9,7 +9,7 @@ class ApiProvider extends ApiClient {
     try {
       Response response = await dio.get("/api/v1/cards");
       if (response.statusCode == 200) {
-        List<CardModel> cards = (response.data as List?)
+        List<CardModel> cards = (response.data["items"] as List?)
                 ?.map((e) => CardModel.fromJson(e))
                 .toList() ??
             [];

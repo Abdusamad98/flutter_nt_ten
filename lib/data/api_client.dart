@@ -13,11 +13,7 @@ class ApiClient {
     dio = Dio();
 
     dio.options = BaseOptions(
-      headers: {
-        "Authorization":
-            "Bearer aw4WWbedmDumEnhRAu7h6oiHoo8C-JIcCdyN9yTToeXm1uqDvA",
-        "Content-Type": "application/json"
-      },
+      headers: _getHeaders(),
       baseUrl: AppConstants.baseUrl,
       receiveTimeout: const Duration(seconds: 5),
     );
@@ -42,5 +38,12 @@ class ApiClient {
         },
       ),
     );
+  }
+
+  Map<String, String> _getHeaders() {
+    return {
+      "Authorization": "Bearer ${AppConstants.token}",
+      "Content-Type": "application/json",
+    };
   }
 }
