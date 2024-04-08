@@ -9,7 +9,7 @@ class CurrenciesBloc extends Bloc<CurrenciesEvent, CurrenciesState> {
       : super(CurrenciesInitialState()) {
     on<GetCurrenciesEvent>((event, emit) async {
       emit(CurrenciesLoadingState());
-      List<CurrencyModel> list = await currenciesRepo.getCurrencies();
+      List<CardModel> list = await currenciesRepo.getCurrencies();
       if (list.isEmpty) {
         emit(CurrenciesErrorState("Something went wrong"));
       } else {

@@ -6,14 +6,14 @@ import 'package:flutter_nt_ten/utils/constants/app_constants.dart';
 
 class ApiProvider extends ApiClient {
 
-  Future<List<CurrencyModel>> getCurrencies() async {
-    List<CurrencyModel> currencies = [];
+  Future<List<CardModel>> getCurrencies() async {
+    List<CardModel> currencies = [];
 
     try {
       Response response = await dio.get(AppConstants.currenciesEndPoint);
       if (response.statusCode == 200) {
         currencies = (response.data as List?)
-                ?.map((e) => CurrencyModel.fromJson(e))
+                ?.map((e) => CardModel.fromJson(e))
                 .toList() ??
             [];
         return currencies;

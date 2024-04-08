@@ -6,5 +6,5 @@ class CurrenciesRepo {
 
   final ApiProvider apiProvider;
 
-  Future<List<CurrencyModel>> getCurrencies() => apiProvider.getCurrencies();
+  Future<List<CardModel>> getCurrencies() => apiProvider.getCurrencies();
 }
