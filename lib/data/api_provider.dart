@@ -1,25 +1,24 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_nt_ten/data/api_client.dart';
-import 'package:flutter_nt_ten/data/models/currency_model.dart';
-import 'package:flutter_nt_ten/utils/constants/app_constants.dart';
+import 'package:flutter_nt_ten/data/models/card_model.dart';
+import 'package:flutter_nt_ten/data/models/network_response.dart';
 
 class ApiProvider extends ApiClient {
-  Future<List<CardModel>> getCurrencies() async {
-    List<CardModel> currencies = [];
-
+  Future<NetworkResponse> getCards() async {
     try {
-      Response response = await dio.get(AppConstants.currenciesEndPoint);
+      Response response = await dio.get("/api/v1/cards");
       if (response.statusCode == 200) {
-        currencies = (response.data as List?)
+        List<CardModel> cards = (response.data as List?)
                 ?.map((e) => CardModel.fromJson(e))
                 .toList() ??
             [];
-        return currencies;
+        return NetworkResponse(data: cards);
       }
     } catch (error) {
       debugPrint("ERROR:$error");
+      return NetworkResponse(errorText: error.toString());
     }
-    return currencies;
+    return NetworkResponse(errorText: "OTHER ERROR");
   }
 }

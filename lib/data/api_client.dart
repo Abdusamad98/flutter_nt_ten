@@ -13,8 +13,12 @@ class ApiClient {
     dio = Dio();
 
     dio.options = BaseOptions(
-      queryParameters: {},
-      baseUrl: AppConstants.currenciesBaseUrl,
+      headers: {
+        "Authorization":
+            "Bearer aw4WWbedmDumEnhRAu7h6oiHoo8C-JIcCdyN9yTToeXm1uqDvA",
+        "Content-Type": "application/json"
+      },
+      baseUrl: AppConstants.baseUrl,
       receiveTimeout: const Duration(seconds: 5),
     );
 

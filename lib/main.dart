@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_nt_ten/blocs/currencies_bloc.dart';
-import 'package:flutter_nt_ten/blocs/currencies_event.dart';
+import 'package:flutter_nt_ten/blocs/cards_bloc.dart';
 import 'package:flutter_nt_ten/data/api_provider.dart';
 import 'package:flutter_nt_ten/data/cards_repo.dart';
 import 'package:flutter_nt_ten/screens/cards_screen.dart';
@@ -26,14 +25,14 @@ class App extends StatelessWidget {
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider(
-            create: (_) => CardsRepostitory(apiProvider: apiProvider)),
+            create: (_) => CardsRepository(apiProvider: apiProvider)),
       ],
       child: MultiBlocProvider(
         providers: [
           BlocProvider(
             create: (context) =>
-                CurrenciesBloc(currenciesRepo: context.read<CardsRepostitory>())
-                  ..add(GetCurrenciesEvent()),
+                CardsBloc(cardsRepository: context.read<CardsRepository>())
+                  ..add(GetCardsEvent()),
           )
         ],
         child: const MyApp(),
