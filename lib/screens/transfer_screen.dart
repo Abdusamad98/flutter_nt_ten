@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class TarnsferScreen extends StatefulWidget {
-  const TarnsferScreen({super.key});
+class TransferScreen extends StatefulWidget {
+  const TransferScreen({super.key});
 
   @override
-  State<TarnsferScreen> createState() => _TarnsferScreenState();
+  State<TransferScreen> createState() => _TransferScreenState();
 }
 
-class _TarnsferScreenState extends State<TarnsferScreen> {
+class _TransferScreenState extends State<TransferScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

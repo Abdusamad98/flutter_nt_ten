@@ -85,7 +85,7 @@ class CardModel {
       amount: (json["amount"] as num? ?? 0.0).toDouble(),
       cardNumber: json["card_number"] as String? ?? "",
       expireDate: json["expire_date"] as String? ?? "",
-      bankName: json["ban_name"] as String? ?? "",
+      bankName: json["bank_name"] as String? ?? "",
       cardName: json["card_name"] as String? ?? "",
       isMain: json["is_main"] as bool? ?? false,
       ownerName: json["owner_name"] as String? ?? "",
