@@ -10,7 +10,7 @@ class CardsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Currencies")),
+      appBar: AppBar(title: const Text("Cards")),
       body: Column(
         children: [
           BlocBuilder<CardsBloc, CardsState>(
@@ -34,11 +34,11 @@ class CardsScreen extends StatelessWidget {
                   child: ListView(
                     children: List.generate(state.cards.length, (index) {
                       CardModel cardModel = state.cards[index];
-                      return ListTile(
-                        onTap: () {},
-                        title: Text(
-                            "${cardModel.ownerName} ${cardModel.expireDate}"),
-                        subtitle: Text("Qiymati: ${NumberFormat.currency(locale: "uz").format(cardModel.amount)}"),
+                      return Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16),
+                          color:
+                        ),
                       );
                     }),
                   ),
