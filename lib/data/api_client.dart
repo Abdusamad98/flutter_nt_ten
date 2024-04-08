@@ -16,10 +16,6 @@ class ApiClient {
       queryParameters: {},
       baseUrl: AppConstants.currenciesBaseUrl,
       receiveTimeout: const Duration(seconds: 5),
-      // headers: {
-      //   "Authorization": "Bearer erjfjrbjrfbh",
-      //   "Content-Type": "application/Json"
-      // },
     );
 
     dio.interceptors.add(

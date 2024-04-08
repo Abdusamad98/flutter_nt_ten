@@ -7,6 +7,7 @@ class CardModel {
   final double amount;
   final String color;
   final String bankName;
+  final String providerName;
   final bool isMain;
 
   CardModel({
@@ -19,6 +20,7 @@ class CardModel {
     required this.isMain,
     required this.ownerName,
     required this.uuid,
+    required this.providerName,
   });
 
   CardModel copyWith({
@@ -30,6 +32,7 @@ class CardModel {
     double? amount,
     String? color,
     String? bankName,
+    String? providerName,
     bool? isMain,
   }) {
     return CardModel(
@@ -42,6 +45,7 @@ class CardModel {
       isMain: isMain ?? this.isMain,
       ownerName: ownerName ?? this.ownerName,
       uuid: uuid ?? this.uuid,
+      providerName: providerName ?? this.providerName,
     );
   }
 
@@ -55,6 +59,7 @@ class CardModel {
       "card_name": cardName,
       "is_main": isMain,
       "owner_name": ownerName,
+      "provider_name": providerName,
     };
   }
 
@@ -69,6 +74,7 @@ class CardModel {
       "card_name": cardName,
       "is_main": isMain,
       "owner_name": ownerName,
+      "provider_name": providerName,
     };
   }
 
@@ -83,6 +89,7 @@ class CardModel {
       cardName: json["card_name"] as String? ?? "",
       isMain: json["is_main"] as bool? ?? false,
       ownerName: json["owner_name"] as String? ?? "",
+      providerName: json["provider_name"] as String? ?? "",
     );
   }
 
@@ -96,5 +103,6 @@ class CardModel {
         isMain: false,
         ownerName: "",
         uuid: "",
+        providerName: "",
       );
 }

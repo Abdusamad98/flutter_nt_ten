@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_nt_ten/blocs/currencies_bloc.dart';
 import 'package:flutter_nt_ten/blocs/currencies_event.dart';
 import 'package:flutter_nt_ten/data/api_provider.dart';
-import 'package:flutter_nt_ten/data/currencies_repo.dart';
-import 'package:flutter_nt_ten/screens/currencies_screen.dart';
+import 'package:flutter_nt_ten/data/cards_repo.dart';
+import 'package:flutter_nt_ten/screens/cards_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,13 +26,13 @@ class App extends StatelessWidget {
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider(
-            create: (_) => CurrenciesRepo(apiProvider: apiProvider)),
+            create: (_) => CardsRepostitory(apiProvider: apiProvider)),
       ],
       child: MultiBlocProvider(
         providers: [
           BlocProvider(
             create: (context) =>
-                CurrenciesBloc(currenciesRepo: context.read<CurrenciesRepo>())
+                CurrenciesBloc(currenciesRepo: context.read<CardsRepostitory>())
                   ..add(GetCurrenciesEvent()),
           )
         ],
@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(useMaterial3: false),
-      home: CurrenciesScreen(),
+      home: CardsScreen(),
     );
   }
 }
