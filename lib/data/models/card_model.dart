@@ -1,15 +1,17 @@
-class CardModel {
-  CardModel({
+import 'package:equatable/equatable.dart';
+
+class CardModel extends Equatable {
+  const CardModel({
     required this.name,
     required this.cardNumber,
     required this.cardHolder,
     required this.expireDate,
   });
 
-  String name;
-  String cardNumber;
-  String expireDate;
-  String cardHolder;
+  final String name;
+  final String cardNumber;
+  final String expireDate;
+  final String cardHolder;
 
   CardModel copyWith({
     String? name,
@@ -23,4 +25,12 @@ class CardModel {
         expireDate: expireDate ?? this.expireDate,
         cardHolder: cardHolder ?? this.cardHolder,
       );
+
+  @override
+  List<Object?> get props => [
+        name,
+        cardNumber,
+        expireDate,
+        cardHolder,
+      ];
 }

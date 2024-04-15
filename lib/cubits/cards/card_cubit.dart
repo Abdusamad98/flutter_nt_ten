@@ -4,7 +4,7 @@ import 'package:flutter_nt_ten/data/models/card_model.dart';
 class CardCubit extends Cubit<CardModel> {
   CardCubit()
       : super(
-          CardModel(
+          const CardModel(
             name: "",
             cardNumber: "",
             cardHolder: "",
@@ -30,7 +30,7 @@ class CardCubit extends Cubit<CardModel> {
 
   setEmptyCard() {
     emit(
-      CardModel(
+      const CardModel(
         name: "",
         cardNumber: "",
         cardHolder: "",
