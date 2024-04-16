@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_nt_ten/screens/counter/view/counter_screen.dart';
 import 'package:flutter_nt_ten/screens/currency/view/currency_screen.dart';
+import 'package:flutter_nt_ten/screens/pin_put_screen.dart';
 import 'package:flutter_nt_ten/screens/shimmer_example/shimmer_example_screen.dart';
 import 'package:flutter_nt_ten/utils/translations/messages.dart';
 import 'package:get/get.dart';
