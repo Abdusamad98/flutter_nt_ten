@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_nt_ten/data/models/currency_model.dart';
 import 'package:flutter_nt_ten/screens/counter/view/counter_screen.dart';
 import 'package:flutter_nt_ten/screens/currency/currency_controller.dart';
+import 'package:flutter_nt_ten/screens/shimmer_example/shimmer_example_screen.dart';
 import 'package:get/get.dart';
 
 class CurrencyScreen extends StatefulWidget {
@@ -65,8 +66,9 @@ class _CurrencyScreenState extends State<CurrencyScreen> {
             Expanded(
               child: Obx(
                 () {
+                  //return const ShimmerExampleScreen();
                   if (currencyController.isLoading.value) {
-                    return const Center(child: CircularProgressIndicator());
+                    return const ShimmerExampleScreen();
                   }
 
                   if (currencyController.errorMessage.value.isNotEmpty) {
