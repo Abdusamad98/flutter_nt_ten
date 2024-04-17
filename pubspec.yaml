@@ -38,7 +38,9 @@ dependencies:
   flutter_svg: ^2.0.9
   http: ^1.2.0
   shared_preferences: ^2.2.2
-  provider: ^6.1.2
+  flutter_bloc: ^8.1.5
+  equatable: ^2.0.5
+  get_it: ^7.7.0
 
 
 dev_dependencies:
