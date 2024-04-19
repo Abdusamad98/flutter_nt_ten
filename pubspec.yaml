@@ -38,7 +38,11 @@ dependencies:
   flutter_svg: ^2.0.9
   http: ^1.2.0
   shared_preferences: ^2.2.2
-  provider: ^6.1.2
+  flutter_bloc: ^8.1.5
+  equatable: ^2.0.5
+  get_it: ^7.7.0
+  qr_code_scanner: ^1.0.1
+  qr_flutter: ^4.1.0
 
 
 dev_dependencies:
@@ -54,12 +58,12 @@ flutter:
     - assets/images/
     - assets/icons/
   fonts:
-     - family: Inter
-       fonts:
-         - asset: assets/fonts/inter/Inter-Black.otf
-         - asset: assets/fonts/inter/Inter-Bold.otf
-         - asset: assets/fonts/inter/Inter-Italic.otf
-         - asset: assets/fonts/inter/Inter-Light.otf
-         - asset: assets/fonts/inter/Inter-Medium.otf
-         - asset: assets/fonts/inter/Inter-Regular.otf
-         - asset: assets/fonts/inter/Inter-SemiBold.otf
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/inter/Inter-Black.otf
+        - asset: assets/fonts/inter/Inter-Bold.otf
+        - asset: assets/fonts/inter/Inter-Italic.otf
+        - asset: assets/fonts/inter/Inter-Light.otf
+        - asset: assets/fonts/inter/Inter-Medium.otf
+        - asset: assets/fonts/inter/Inter-Regular.otf
+        - asset: assets/fonts/inter/Inter-SemiBold.otf
