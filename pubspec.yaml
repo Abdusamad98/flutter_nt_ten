@@ -36,13 +36,17 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   flutter_svg: ^2.0.9
-  http: ^1.2.0
   shared_preferences: ^2.2.2
   flutter_bloc: ^8.1.5
   equatable: ^2.0.5
   get_it: ^7.7.0
   qr_code_scanner: ^1.0.1
   qr_flutter: ^4.1.0
+
+  open_filex: ^4.4.0
+  gallery_saver: ^2.3.2
+  path_provider: ^2.1.2
+  permission_handler: ^11.3.0
 
 
 dev_dependencies:
