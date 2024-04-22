@@ -10,7 +10,7 @@ class FileRepository {
     ),
     FileDataModel(
       iconPath: AppImages.boy,
-      fileName: "Mountains2",
+      fileName: "Mountains7",
       fileUrl: "https://cdn.pixabay.com/video/2020/09/02/48873-457671829_large.mp4",
     ),
   ];

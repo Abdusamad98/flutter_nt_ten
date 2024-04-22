@@ -45,6 +45,7 @@ class FileManagerService {
   }
 
   Future<FileStatusModel> checkFile(FileDataModel fileDataModel) async {
+    await _init();
     FileStatusModel fileStatusModel = FileStatusModel(
       isExist: false,
       newFileLocation: "",
