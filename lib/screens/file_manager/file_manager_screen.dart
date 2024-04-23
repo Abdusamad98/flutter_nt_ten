@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_nt_ten/bloc/file_manager_bloc.dart';
 import 'package:flutter_nt_ten/data/models/file_data_model.dart';
-import 'package:flutter_nt_ten/data/models/file_status_model.dart';
 import 'package:flutter_nt_ten/data/repositories/file_repository.dart';
-import 'package:flutter_nt_ten/services/file_maneger_service.dart';
+import 'package:flutter_nt_ten/services/file_manager_service.dart';
 import 'package:flutter_nt_ten/utils/colors/app_colors.dart';
 import 'package:open_filex/open_filex.dart';
 
@@ -33,38 +32,33 @@ class FileManagerScreen extends StatelessWidget {
               child: BlocBuilder<FileManagerBloc, FileManagerState>(
                 builder: (context, state) {
                   debugPrint("CURRENT MB: ${state.progress}");
+                  String filePath = FileManagerService.isExist(
+                    fileDataModel.fileUrl,
+                    fileDataModel.fileName,
+                  );
                   return Column(
                     children: [
                       ListTile(
                         title: Text(fileDataModel.fileName),
                         subtitle: Text(fileDataModel.fileUrl),
                         trailing: IconButton(
-                          onPressed: () async {
-                            if (state.newFileLocation.isEmpty) {
-                              fileManagerBloc.add(
-                                DownloadFileEvent(
-                                  fileDataModel: fileDataModel,
-                                ),
-                              );
-                            } else {
-                              await OpenFilex.open(state.newFileLocation);
-                            }
-                          },
-                          icon: FutureBuilder<FileStatusModel>(
-                            future: FileManagerService.checkFile(fileDataModel),
-                            builder: (context, snapshot) {
-                              if (snapshot.hasData) {
-                                FileStatusModel status =
-                                    snapshot.data as FileStatusModel;
-                                return Icon(
-                                  status.isExist ? Icons.check : Icons.download,
-                                  color: Colors.blue,
+                            onPressed: () async {
+                              if (filePath.isNotEmpty) {
+                                await OpenFilex.open(filePath);
+                              } else {
+                                fileManagerBloc.add(
+                                  DownloadFileEvent(
+                                    fileDataModel: fileDataModel,
+                                  ),
                                 );
                               }
-                              return const SizedBox();
                             },
-                          ),
-                        ),
+                            icon: Icon(
+                              filePath.isNotEmpty
+                                  ? Icons.check
+                                  : Icons.download,
+                              color: Colors.blue,
+                            )),
                       ),
                       Visibility(
                         visible: state.progress != 0,

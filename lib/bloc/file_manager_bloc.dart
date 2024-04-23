@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_nt_ten/data/models/file_data_model.dart';
 import 'package:flutter_nt_ten/data/models/file_status_model.dart';
-import 'package:flutter_nt_ten/services/file_maneger_service.dart';
+import 'package:flutter_nt_ten/services/file_manager_service.dart';
 import 'package:open_filex/open_filex.dart';
 
 part 'file_manager_event.dart';
@@ -38,6 +38,7 @@ class FileManagerBloc extends Bloc<FileManagerEvent, FileManagerState> {
           emit(state.copyWith(progress: count / total));
         },
       );
+      await FileManagerService.init();
       emit(
         state.copyWith(
           progress: 1,
@@ -49,8 +50,6 @@ class FileManagerBloc extends Bloc<FileManagerEvent, FileManagerState> {
 }
 
 Future<FileStatusModel> getStatus(FileDataModel fileDataModel) async {
-  await FileManagerService.init();
-
   final FileStatusModel fileStatusModel =
       await Isolate.run<FileStatusModel>(() async {
     return await FileManagerService.checkFile(fileDataModel);

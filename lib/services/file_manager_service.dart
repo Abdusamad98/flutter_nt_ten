@@ -10,11 +10,17 @@ import 'package:permission_handler/permission_handler.dart';
 class FileManagerService {
   static Directory? directory;
 
+  static List<String> allFilePaths = [];
+
   static Future<void> init() async {
     bool hasPermission = await requestWritePermission();
     if (!hasPermission) return;
+
     debugPrint("STORAGE PERMISSION GRANTED");
+
     directory = await getDownloadPath();
+
+    allFilePaths = await getDirectoryPaths(directory);
   }
 
   static Future<bool> requestWritePermission() async {
@@ -47,13 +53,10 @@ class FileManagerService {
   }
 
   static Future<FileStatusModel> checkFile(FileDataModel fileDataModel) async {
-    //await init();
-
     FileStatusModel fileStatusModel = FileStatusModel(
       isExist: false,
       newFileLocation: "",
     );
-    //Check for url validation
 
     String savedLocation = '';
 
@@ -64,22 +67,41 @@ class FileManagerService {
     }
     fileStatusModel = fileStatusModel.copyWith(newFileLocation: savedLocation);
 
-    var allFiles = directory?.list();
-
-    List<String> filePaths = [];
-
-    await allFiles?.forEach((element) {
-      debugPrint("FILES IN DOWNLOAD FOLDER:${element.path}");
-      filePaths.add(element.path.toString());
-    });
+    List<String> filePaths = await getDirectoryPaths(directory);
 
     if (filePaths.contains(savedLocation)) {
       fileStatusModel = fileStatusModel.copyWith(isExist: true);
     }
 
-    debugPrint(
-        "FINAL FILE STATE:${fileStatusModel.newFileLocation} AND STAT:${fileStatusModel.isExist}");
+    // debugPrint("FINAL FILE STATE:${fileStatusModel.newFileLocation} AND STAT:${fileStatusModel.isExist}");
 
     return fileStatusModel;
+  }
+
+  static String isExist(
+    String fileUrl,
+    String fileName,
+  ) {
+    String filePath = '';
+    List<String> pattern = fileUrl.split(".");
+    if (pattern.length > 1) {
+      filePath =
+          "${directory != null ? directory!.path : "/storage/emulated/0/Download"}/$fileName.${pattern.last}";
+    }
+    if (allFilePaths.contains(filePath)) {
+      return filePath;
+    }
+    return "";
+  }
+
+  static Future<List<String>> getDirectoryPaths(Directory? directory) async {
+    List<String> filePaths = [];
+    if (directory == null) return filePaths;
+    var allFiles = directory.list();
+    await allFiles.forEach((element) {
+      debugPrint("FILES IN DOWNLOAD FOLDER:${element.path}");
+      filePaths.add(element.path.toString());
+    });
+    return filePaths;
   }
 }
