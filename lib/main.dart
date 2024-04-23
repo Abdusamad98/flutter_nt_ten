@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_nt_ten/bloc/file_manager_bloc.dart';
 import 'package:flutter_nt_ten/data/repositories/file_repository.dart';
-import 'package:flutter_nt_ten/file_manager_screen.dart';
+import 'package:flutter_nt_ten/screens/download_example/home_page.dart';
+import 'package:flutter_nt_ten/screens/file_manager/file_manager_screen.dart';
 import 'package:flutter_nt_ten/services/file_maneger_service.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
 
-void main() {
+void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  // RootIsolateToken rootIsolateToken = RootIsolateToken.instance!;
+  // BackgroundIsolateBinaryMessenger.ensureInitialized(rootIsolateToken);
 
-  FileManagerService();
+  await FileManagerService.init();
 
   runApp(MyApp());
 }

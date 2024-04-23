@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_nt_ten/bloc/file_manager_bloc.dart';
 import 'package:flutter_nt_ten/data/models/file_data_model.dart';
+import 'package:flutter_nt_ten/data/models/file_status_model.dart';
 import 'package:flutter_nt_ten/data/repositories/file_repository.dart';
+import 'package:flutter_nt_ten/services/file_maneger_service.dart';
 import 'package:flutter_nt_ten/utils/colors/app_colors.dart';
 import 'package:open_filex/open_filex.dart';
 
@@ -48,11 +50,19 @@ class FileManagerScreen extends StatelessWidget {
                               await OpenFilex.open(state.newFileLocation);
                             }
                           },
-                          icon: Icon(
-                            state.newFileLocation.isEmpty
-                                ? Icons.download
-                                : Icons.check,
-                            color: Colors.blue,
+                          icon: FutureBuilder<FileStatusModel>(
+                            future: FileManagerService.checkFile(fileDataModel),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                FileStatusModel status =
+                                    snapshot.data as FileStatusModel;
+                                return Icon(
+                                  status.isExist ? Icons.check : Icons.download,
+                                  color: Colors.blue,
+                                );
+                              }
+                              return const SizedBox();
+                            },
                           ),
                         ),
                       ),
