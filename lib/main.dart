@@ -6,8 +6,6 @@ import 'package:flutter_nt_ten/data/repositories/file_repository.dart';
 import 'package:flutter_nt_ten/screens/download_example/home_page.dart';
 import 'package:flutter_nt_ten/screens/file_manager/file_manager_screen.dart';
 import 'package:flutter_nt_ten/services/file_manager_service.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_downloader/flutter_downloader.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
