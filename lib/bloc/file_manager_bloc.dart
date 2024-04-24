@@ -31,13 +31,28 @@ class FileManagerBloc extends Bloc<FileManagerEvent, FileManagerState> {
     if (fileStatusModel.isExist) {
       OpenFilex.open(fileStatusModel.newFileLocation);
     } else {
-      await dio.download(
-        event.fileDataModel.fileUrl,
-        fileStatusModel.newFileLocation,
-        onReceiveProgress: (count, total) async {
-          emit(state.copyWith(progress: count / total));
+      ReceivePort receivePort = ReceivePort();
+
+      Isolate.spawn(
+        (SendPort sendPort) async {
+          double d = 0.0;
+          dio.download(
+            event.fileDataModel.fileUrl,
+            fileStatusModel.newFileLocation,
+            onReceiveProgress: (count, total) async {
+              d = count / total;
+              Isolate.exit(sendPort, d);
+            },
+          );
         },
+        receivePort.sendPort,
       );
+
+      receivePort.listen((message) {
+        //emit(state.copyWith(progress: message));
+        print("Message:$message");
+      });
+
       await FileManagerService.init();
       emit(
         state.copyWith(
