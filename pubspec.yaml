@@ -39,6 +39,7 @@ dependencies:
   http: ^1.2.0
   shared_preferences: ^2.2.2
   provider: ^6.1.2
+  device_info_plus: ^10.1.0
 
 
 dev_dependencies:
