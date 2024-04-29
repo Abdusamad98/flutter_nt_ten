@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_nt_ten/blocs/connectivity/connectivity_bloc.dart';
+import 'package:flutter_nt_ten/blocs/connectivity/connectivity_state.dart';
 import 'package:flutter_nt_ten/blocs/currency/currency_bloc.dart';
 import 'package:flutter_nt_ten/blocs/currency/currency_event.dart';
 import 'package:flutter_nt_ten/blocs/currency/currency_state.dart';
 import 'package:flutter_nt_ten/data/models/currency_model.dart';
+import 'package:flutter_nt_ten/screens/no_internet/no_internet_screen.dart';
 import 'package:flutter_nt_ten/utils/styles/app_text_style.dart';
+import 'package:my_utils/my_utils.dart';
 
 class CurrenciesScreen extends StatelessWidget {
   const CurrenciesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    width = MediaQuery.of(context).size.width;
+    height = MediaQuery.of(context).size.height;
+
     return Scaffold(
       appBar: AppBar(title: const Text("Currencies")),
       body: Column(
@@ -78,16 +85,27 @@ class CurrenciesScreen extends StatelessWidget {
           //   ),
           // )
 
-          TextButton(
-            onPressed: () {
-              context.read<CurrencyBloc>().add(GetCurrenciesEvent());
+          BlocListener<ConnectivityBloc, ConnectivityState>(
+            listener: (context, state) {
+              if (!state.hasInternet) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return NoInternetScreen(
+                        onInternetComeBack: () {
+                          context
+                              .read<CurrencyBloc>()
+                              .add(GetCurrenciesEvent());
+                        },
+                      );
+                    },
+                  ),
+                );
+              }
             },
-            child: Text(
-              "GET ALL CURRENCIES",
-              style: AppTextStyle.interSemiBold.copyWith(fontSize: 24),
-            ),
+            child: const SizedBox(),
           ),
-
           const SizedBox(height: 24),
         ],
       ),

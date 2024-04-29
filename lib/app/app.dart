@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_nt_ten/blocs/calculator/calculator_cubit.dart';
 import 'package:flutter_nt_ten/blocs/cards/card_bloc.dart';
+import 'package:flutter_nt_ten/blocs/connectivity/connectivity_bloc.dart';
+import 'package:flutter_nt_ten/blocs/connectivity/connectivity_event.dart';
 import 'package:flutter_nt_ten/blocs/currency/currency_bloc.dart';
 import 'package:flutter_nt_ten/blocs/currency/currency_event.dart';
 import 'package:flutter_nt_ten/data/repositories/currency_repository.dart';
@@ -21,8 +23,10 @@ class App extends StatelessWidget {
       child: MultiBlocProvider(
         providers: [
           BlocProvider(create: (_) => CardBloc()),
-          BlocProvider(create: (_) => CurrencyBloc()),
+          BlocProvider(create: (_) => CurrencyBloc()..add(GetCurrenciesEvent())),
           BlocProvider(create: (_) => CalculatorCubit()),
+          BlocProvider(
+              create: (_) => ConnectivityBloc()..add(CheckConnectivity())),
         ],
         child: const MyApp(),
       ),

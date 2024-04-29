@@ -41,6 +41,10 @@ dependencies:
   provider: ^6.1.2
   flutter_bloc: ^8.1.5
   bloc_concurrency: ^0.2.5
+  equatable: ^2.0.5
+  my_utils:
+    path: packages/my_utils
+  connectivity_plus: ^6.0.3
 
 
 dev_dependencies:
