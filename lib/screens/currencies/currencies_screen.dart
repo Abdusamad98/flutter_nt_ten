@@ -85,27 +85,27 @@ class CurrenciesScreen extends StatelessWidget {
           //   ),
           // )
 
-          BlocListener<ConnectivityBloc, ConnectivityState>(
-            listener: (context, state) {
-              if (!state.hasInternet) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return NoInternetScreen(
-                        onInternetComeBack: () {
-                          context
-                              .read<CurrencyBloc>()
-                              .add(GetCurrenciesEvent());
-                        },
-                      );
-                    },
-                  ),
-                );
-              }
-            },
-            child: const SizedBox(),
-          ),
+          // BlocListener<ConnectivityBloc, ConnectivityState>(
+          //   listener: (context, state) {
+          //     if (!state.hasInternet) {
+          //       Navigator.push(
+          //         context,
+          //         MaterialPageRoute(
+          //           builder: (context) {
+          //             return NoInternetScreen(
+          //               onInternetComeBack: () {
+          //                 context
+          //                     .read<CurrencyBloc>()
+          //                     .add(GetCurrenciesEvent());
+          //               },
+          //             );
+          //           },
+          //         ),
+          //       );
+          //     }
+          //   },
+          //   child: const SizedBox(),
+          // ),
           const SizedBox(height: 24),
         ],
       ),
