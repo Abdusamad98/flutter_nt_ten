@@ -20,6 +20,9 @@ class _NoInternetScreenState extends State<NoInternetScreen> {
   Widget build(BuildContext context) {
     return PopScope(
       canPop: false,
+      onPopInvoked: (value) {
+        debugPrint("ON POP INVOKED:$value");
+      },
       child: Scaffold(
         // appBar: AppBar(
         //   leading: IconButton(
